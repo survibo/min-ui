@@ -10,4 +10,4 @@ You can use Tailwind (v4), Radix UI, and Cross Variance Authority (CVA).
 
 # Other Information
 
-When you try to install npm packages, always use `npm` cli tool, not manually modifying `package.json` file.
+글자 꺠짐 발생시 UTF-8로 인코딩해서 받아들일것

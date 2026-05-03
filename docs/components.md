@@ -51,58 +51,6 @@
 | `DropdownMenu`         | `Button` + 항목 리스트                                    | 컨텍스트 액션 메뉴           |
 | `MediaAttachBar`       | `IconButton` × N (이미지·파일·링크)                       | DM 첨부 툴바                 |
 
----
-
-## Layer 3 — Organisms (Molecules + Atoms 조합, 독립 기능 단위)
-
-페이지 내 독립적인 섹션 역할을 하는 블록.
-
-| 컴포넌트             | 설명                                                                    |
-| -------------------- | ----------------------------------------------------------------------- |
-| `AppHeader`          | 로고 + 상단 액션 버튼(알림, 부가기능 진입) — 모바일 전용                |
-| `BottomNavBar`       | 메인/검색/그룹/채팅/마이페이지 탭 — 모바일                              |
-| `SideNavBar`         | 동일 메뉴 + 유저 정보 — 데스크톱 좌측                                   |
-| `NotificationPanel`  | `NotificationItem` 목록 + 읽음 처리 — 데스크톱 우측                     |
-| `PostCard`           | `UserChip` + 본문 + `ImageThumb` 갤러리 + `ReactionBar` + 댓글 미리보기 |
-| `PostComposer`       | `Avatar` + `Textarea` + `MediaAttachBar` + `Button`(게시)               |
-| `CommentThread`      | `MessageBubble` 변형 × N + 입력창                                       |
-| `StoryRow`           | `StoryThumbnail` × N 가로 스크롤                                        |
-| `StoryViewer`        | 전체화면 스토리 뷰어 (진행 바 + 닫기)                                   |
-| `ChatWindow`         | `MessageBubble` 목록 + `MediaAttachBar` + `Input` + `IconButton`(전송)  |
-| `ChatRoomList`       | `ChatRoomItem` × N + `SearchBar`                                        |
-| `GroupList`          | `GroupCard` × N + `SearchBar`                                           |
-| `GroupHeader`        | 그룹 커버 이미지 + 그룹명 + 설명 + 가입/권한 `Button`                   |
-| `ProfileHeader`      | 커버 + `Avatar` + 이름 + 생일 + 편집 `Button`                           |
-| `WeeklyTimetable`    | 요일×교시 그리드 + 강의 블록 렌더링                                     |
-| `CourseInputForm`    | `CourseChip` 목록 + `FormField`(과목 추가)                              |
-| `ReservationGrid`    | 시간대 × 시설 슬롯 테이블 (`TimeSlotButton` 배열)                       |
-| `AdminApprovalQueue` | 대기 유저 목록 + 승인/거절 `Button` (관리자용)                          |
-| `GoogleLoginButton`  | 구글 OAuth 버튼 (브랜드 가이드라인 준수)                                |
-| `StudentInfoForm`    | 학번·학과·이름 등 `FormField` 묶음                                      |
-
----
-
-## Layer 4 — Templates / Pages
-
-Organisms를 레이아웃에 배치한 전체 화면.
-
-| 페이지                | 주요 Organisms                                                                                     |
-| --------------------- | -------------------------------------------------------------------------------------------------- |
-| `LandingPage`         | `GoogleLoginButton` + 서비스 소개                                                                  |
-| `PendingApprovalPage` | `ApprovalStatusBanner` + 안내 텍스트                                                               |
-| `StudentInfoPage`     | `StudentInfoForm` + `Button`(제출)                                                                 |
-| `FeedPage`            | `SideNavBar` / `BottomNavBar` + `StoryRow` + `PostComposer` + `PostCard` × N + `NotificationPanel` |
-| `SearchPage`          | `SearchBar` + `GroupList` + 유저 검색 결과                                                         |
-| `GroupPage`           | `GroupHeader` + `PostComposer`(권한 조건부) + `PostCard` × N                                       |
-| `ProfilePage`         | `ProfileHeader` + `PostCard` × N + `StoryRow`                                                      |
-| `ChatListPage`        | `ChatRoomList`                                                                                     |
-| `ChatRoomPage`        | `AppHeader` + `ChatWindow`                                                                         |
-| `NotificationPage`    | `NotificationPanel` (모바일 전용 풀페이지)                                                         |
-| `TimetablePage`       | `CourseInputForm` + `WeeklyTimetable`                                                              |
-| `ReservationPage`     | 시설 탭 + `ReservationGrid`                                                                        |
-
----
-
 ## 횡단 관심사 (Cross-cutting)
 
 페이지·Organism에 걸쳐 공통으로 필요한 컴포넌트.
