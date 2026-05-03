@@ -37,6 +37,7 @@ export const WithValue: Story = {
   args: {
     value: 'user@example.com',
     inputSize: 'md',
+    readOnly: true,
   },
 };
 

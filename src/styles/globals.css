@@ -78,7 +78,7 @@
   --color-notify-default: var(--color-secondary-500);
   --color-notify-hover: var(--color-secondary-600);
   --color-notify-foreground: #ffffff;
-  --color-notify-badge-bg: var(--color-secondary-500);
+  --color-notify-badge-bg: var(--color-primary-600);
   --color-notify-badge-text: #ffffff;
 
   /* — Surface (배경 레이어) */
@@ -141,7 +141,7 @@
   --color-notify-default: var(--color-secondary-400);
   --color-notify-hover: var(--color-secondary-300);
   --color-notify-foreground: #1c1917;
-  --color-notify-badge-bg: var(--color-secondary-500);
+  --color-notify-badge-bg: var(--color-primary-500);
   --color-notify-badge-text: #ffffff;
 
   /* — Surface */

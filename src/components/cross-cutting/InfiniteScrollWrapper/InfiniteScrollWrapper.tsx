@@ -21,6 +21,7 @@ export const InfiniteScrollWrapper: React.FC<InfiniteScrollWrapperProps> = ({
   endMessage,
   useWindow = true,
 }) => {
+  const rootRef = React.useRef<HTMLDivElement | null>(null);
   const observerRef = React.useRef<IntersectionObserver | null>(null);
   const loadMoreRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -35,8 +36,12 @@ export const InfiniteScrollWrapper: React.FC<InfiniteScrollWrapperProps> = ({
   );
 
   React.useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') {
+      return;
+    }
+
     const options = {
-      root: useWindow ? null : null,
+      root: useWindow ? null : rootRef.current,
       rootMargin: '0px 0px 200px 0px',
       threshold: 0,
     };
@@ -55,7 +60,7 @@ export const InfiniteScrollWrapper: React.FC<InfiniteScrollWrapperProps> = ({
   }, [handleObserver, useWindow]);
 
   return (
-    <div className={className}>
+    <div ref={rootRef} className={className}>
       {children}
 
       <div ref={loadMoreRef} className="h-px w-full" />

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Plus } from 'lucide-react';
-import { Avatar } from '../../atoms/Avatar';
-import type { AvatarProps } from '../../atoms/Avatar';
+import { Avatar } from '../../atoms/Badge/Avatar';
+import type { AvatarProps } from '../../atoms/Badge/Avatar';
 
 export interface StoryThumbnailProps {
   avatar?: Omit<AvatarProps, 'ref'>;

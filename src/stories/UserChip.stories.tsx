@@ -55,7 +55,7 @@ export const Full: Story = {
 
 export const UserList: Story = {
   render: () => (
-    <div className="space-y-2">
+    <div className="flex flex-wrap items-center gap-2">
       <UserChip name="홍길동" role="학생" />
       <UserChip name="김철수" role="교수" />
       <UserChip name="이영희" role="관리자" />

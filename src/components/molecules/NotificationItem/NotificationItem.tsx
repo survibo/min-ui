@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Avatar } from '../../atoms/Avatar';
+import { Avatar } from '../../atoms/Badge/Avatar';
 import { TimeBadge } from '../../atoms/TimeBadge';
-import type { AvatarProps } from '../../atoms/Avatar';
+import type { AvatarProps } from '../../atoms/Badge/Avatar';
 
 export interface NotificationItemProps {
   avatar?: Omit<AvatarProps, 'ref'>;
@@ -17,36 +17,57 @@ export interface NotificationItemProps {
 const NotificationItem = React.forwardRef<
   HTMLButtonElement,
   NotificationItemProps
->(({ avatar, title, description, time, isRead, onClick, className }, ref) => {
-  return (
-    <button
-      ref={ref}
-      type="button"
-      onClick={onClick}
-      className={`flex w-full items-start gap-3 rounded-lg p-3 text-left transition-colors hover:bg-[var(--color-surface-subtle)] ${!isRead ? 'bg-[var(--color-primary-50)]' : ''} ${className ?? ''}`}
-    >
-      <div className="relative shrink-0">
-        <Avatar {...avatar} fallback="" size="md" />
-        <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-[var(--color-notify-badge-bg)]" />
-      </div>
-      <div className="flex-1 min-w-0">
-        <div className="flex items-start justify-between gap-2">
-          <p
-            className={`text-sm ${!isRead ? 'font-medium text-[var(--color-text-primary)]' : 'text-[var(--color-text-secondary)]'}`}
-          >
-            {title}
-          </p>
-          {time && <TimeBadge date={time} size="xs" />}
+>(
+  (
+    {
+      avatar,
+      title,
+      description,
+      time,
+      isRead,
+      onClick,
+      onMarkAsRead,
+      className,
+    },
+    ref
+  ) => {
+    const handleClick = () => {
+      if (!isRead) {
+        onMarkAsRead?.();
+      }
+      onClick?.();
+    };
+
+    return (
+      <button
+        ref={ref}
+        type="button"
+        onClick={handleClick}
+        className={`flex w-full items-start gap-3 rounded-lg p-3 text-left transition-colors hover:bg-[var(--color-surface-subtle)] ${!isRead ? 'bg-[var(--color-primary-50)]' : ''} ${className ?? ''}`}
+      >
+        <div className="relative shrink-0">
+          <Avatar {...avatar} fallback="" size="md" />
+          <span className="absolute right-0 top-0 h-3 w-3 rounded-full bg-[var(--color-notify-badge-bg)]" />
         </div>
-        {description && (
-          <p className="mt-0.5 text-sm text-[var(--color-text-tertiary)] line-clamp-2">
-            {description}
-          </p>
-        )}
-      </div>
-    </button>
-  );
-});
+        <div className="flex-1 min-w-0">
+          <div className="flex items-start justify-between gap-2">
+            <p
+              className={`text-sm ${!isRead ? 'font-medium text-[var(--color-text-primary)]' : 'text-[var(--color-text-secondary)]'}`}
+            >
+              {title}
+            </p>
+            {time && <TimeBadge date={time} size="xs" />}
+          </div>
+          {description && (
+            <p className="mt-0.5 text-sm text-[var(--color-text-tertiary)] line-clamp-2">
+              {description}
+            </p>
+          )}
+        </div>
+      </button>
+    );
+  }
+);
 NotificationItem.displayName = 'NotificationItem';
 
 export { NotificationItem };

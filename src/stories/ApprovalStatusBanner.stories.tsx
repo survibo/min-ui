@@ -34,6 +34,6 @@ export const Rejected: Story = {
 export const WithCustomMessage: Story = {
   args: {
     status: 'pending',
-    message: '사용자 승인审核中，请稍候...',
+    message: '사용자 승인 대기 중입니다.',
   },
 };

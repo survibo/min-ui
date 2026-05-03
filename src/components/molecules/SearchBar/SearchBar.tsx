@@ -51,7 +51,7 @@ const SearchBar = React.forwardRef<HTMLDivElement, SearchBarProps>(
           <Search className="h-4 w-4 text-[var(--color-text-tertiary)]" />
         </div>
         <Input
-          type="search"
+          type="text"
           value={inputValue}
           onChange={handleChange}
           placeholder={placeholder}

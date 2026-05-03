@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Button } from '../components/atoms';
 import { FormField } from '../components/molecules';
 
 const meta = {
@@ -66,9 +67,9 @@ export const LoginForm: Story = {
         required
         inputProps={{ type: 'password', placeholder: '비밀번호를 입력하세요' }}
       />
-      <button className="w-full h-10 bg-[var(--color-action-default)] text-white rounded-lg">
+      <Button type="button" className="w-full">
         로그인
-      </button>
+      </Button>
     </div>
   ),
 } as Story;

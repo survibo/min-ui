@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Avatar } from '../../atoms/Avatar';
+import { Avatar } from '../../atoms/Badge/Avatar';
 import { ImageThumb } from '../../atoms/ImageThumb';
 import { FileChip } from '../../atoms/FileChip';
 import { TimeBadge } from '../../atoms/TimeBadge';
-import type { AvatarProps } from '../../atoms/Avatar';
+import type { AvatarProps } from '../../atoms/Badge/Avatar';
 
 export interface MessageBubbleProps {
   avatar?: Omit<AvatarProps, 'ref'>;

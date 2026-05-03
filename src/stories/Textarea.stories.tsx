@@ -13,6 +13,15 @@ const meta = {
       control: 'select',
       options: ['default', 'error'],
     },
+    autoResize: {
+      control: 'boolean',
+    },
+    minRows: {
+      control: { type: 'number', min: 1, max: 10 },
+    },
+    maxRows: {
+      control: { type: 'number', min: 1, max: 12 },
+    },
   },
 } satisfies Meta<typeof Textarea>;
 
@@ -28,6 +37,15 @@ export const Default: Story = {
 export const WithValue: Story = {
   args: {
     defaultValue: '입력된 텍스트입니다.',
+  },
+};
+
+export const AutoResize: Story = {
+  args: {
+    autoResize: true,
+    minRows: 1,
+    maxRows: 4,
+    placeholder: '입력할수록 높이가 늘어나고 4줄 이후에는 스크롤됩니다...',
   },
 };
 
@@ -73,7 +91,12 @@ export const FormExample: Story = {
         <label className="text-sm font-medium text-[var(--color-text-primary)]">
           내용
         </label>
-        <Textarea placeholder="게시물 내용을 입력하세요..." />
+        <Textarea
+          autoResize
+          minRows={1}
+          maxRows={4}
+          placeholder="게시물 내용을 입력하세요..."
+        />
       </div>
     </div>
   ),

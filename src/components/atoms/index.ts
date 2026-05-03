@@ -27,8 +27,8 @@ export type { CheckboxProps } from './Checkbox';
 export { Toggle, toggleVariants, toggleThumbVariants } from './Toggle';
 export type { ToggleProps } from './Toggle';
 
-export { Avatar, avatarVariants } from './Avatar';
-export type { AvatarProps } from './Avatar';
+export { Avatar, avatarVariants } from './Badge/Avatar';
+export type { AvatarProps } from './Badge/Avatar';
 
 export { Badge, badgeVariants } from './Badge';
 export type { BadgeProps } from './Badge';
