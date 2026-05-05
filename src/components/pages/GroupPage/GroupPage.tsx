@@ -18,11 +18,6 @@ export interface GroupPagePost {
   timestamp: string;
 }
 
-export interface GroupPageStory {
-  name: string;
-  avatar: { fallback: string; style?: React.CSSProperties };
-}
-
 export interface GroupPageTab {
   label: string;
   href: string;
