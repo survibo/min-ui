@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
-import { InstagramFeedPage } from '../components/pages';
+import { FeedPage } from '../components/pages';
 
 const meta = {
-  title: 'Pages/InstagramFeedPage',
-  component: InstagramFeedPage,
+  title: 'Pages/FeedPage',
+  component: FeedPage,
   parameters: {
     layout: 'fullscreen',
   },
-} satisfies Meta<typeof InstagramFeedPage>;
+} satisfies Meta<typeof FeedPage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

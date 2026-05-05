@@ -19,7 +19,7 @@ import { StoryThumbnail } from '../../molecules/StoryThumbnail';
 import { UserChip } from '../../molecules/UserChip';
 import { PostCard } from '../../organisms/PostCard';
 
-export type InstagramFeedPageProps = Omit<
+export type FeedPageProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
   'children'
 >;
@@ -102,7 +102,7 @@ const posts = [
 
 const suggestions = [
   { name: 'atelier.kim', note: 'Followed by nari' },
-  { name: 'street.frame', note: 'New to Min Social' },
+  { name: 'street.frame', note: 'New to KMLA' },
   { name: 'weekend.log', note: 'Popular this week' },
 ] as const;
 
@@ -113,9 +113,9 @@ const navItems = [
   { label: 'Create', href: '#', icon: PlusSquare },
 ];
 
-const InstagramFeedPage = React.forwardRef<
+const FeedPage = React.forwardRef<
   HTMLDivElement,
-  InstagramFeedPageProps
+  FeedPageProps
 >(({ className, ...props }, ref) => {
   const [isNavCollapsed, setIsNavCollapsed] = React.useState(true);
   const [visiblePostCount, setVisiblePostCount] = React.useState(2);
@@ -145,7 +145,7 @@ const InstagramFeedPage = React.forwardRef<
       <header className="sticky top-0 z-10 border-b border-[var(--color-border-default)] bg-[var(--color-surface-raised)]">
         <div className="mx-auto flex h-16 items-center justify-between gap-10 px-7">
           <a href="#" className="text-lg font-semibold whitespace-nowrap">
-            Min Social
+            KMLA Online
           </a>
           <SearchBar
             placeholder="Search"
@@ -162,10 +162,10 @@ const InstagramFeedPage = React.forwardRef<
       </header>
 
       <main
-        className={`mx-auto justify-between grid grid-cols-1 px-10 py-6 transition-[grid-template-columns] duration-200 ease-out ${
+        className={`mx-auto justify-between gap-8 grid grid-cols-1 px-6 py-6 transition-[grid-template-columns] duration-200 ease-out ${
           isNavCollapsed
-            ? 'lg:grid-cols-[13rem_minmax(0,40rem)_18rem]'
-            : 'lg:grid-cols-[13rem_minmax(0,40rem)_18rem]'
+            ? 'lg:grid-cols-[13rem_minmax(0,40rem)_16rem]'
+            : 'lg:grid-cols-[13rem_minmax(0,40rem)_16rem]'
         }`}
       >
         <aside className="hidden lg:block justify-self-start">
@@ -290,6 +290,6 @@ const InstagramFeedPage = React.forwardRef<
     </div>
   );
 });
-InstagramFeedPage.displayName = 'InstagramFeedPage';
+FeedPage.displayName = 'FeedPage';
 
-export { InstagramFeedPage };
+export { FeedPage };
