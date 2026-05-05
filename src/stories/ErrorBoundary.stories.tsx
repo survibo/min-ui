@@ -8,9 +8,6 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
-    controls: {
-      exclude: ['children', 'fallback'],
-    },
   },
   argTypes: {
     showError: {

@@ -15,11 +15,11 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
-    controls: {
-      exclude: ['className', 'style'],
-    },
   },
   argTypes: {
+    badge: {
+      control: false,
+    },
     icon: {
       control: 'select',
       options: Object.keys(iconMap),
@@ -30,9 +30,6 @@ const meta = {
     },
     count: {
       control: { type: 'number', min: 0 },
-    },
-    badge: {
-      control: false,
     },
   },
 } satisfies Meta<typeof NotificationDot>;

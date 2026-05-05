@@ -18,9 +18,6 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
-    controls: {
-      exclude: ['className', 'style', 'asChild'],
-    },
   },
   argTypes: {
     icon: {

@@ -10,19 +10,18 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
-    controls: {
-      exclude: [
-        'className',
-        'style',
-        'onLike',
-        'onComment',
-        'onShare',
-        'onMore',
-      ],
-    },
   },
   argTypes: {
     author: {
+      control: false,
+    },
+    images: {
+      control: false,
+    },
+    moreMenuItems: {
+      control: false,
+    },
+    stats: {
       control: false,
     },
     content: {
@@ -36,15 +35,6 @@ const meta = {
     },
     groupHref: {
       control: 'text',
-    },
-    images: {
-      control: false,
-    },
-    moreMenuItems: {
-      control: false,
-    },
-    stats: {
-      control: false,
     },
     isLiked: {
       control: 'boolean',

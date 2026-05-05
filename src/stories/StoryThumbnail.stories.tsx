@@ -8,11 +8,11 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
-    controls: {
-      exclude: ['className', 'style'],
-    },
   },
   argTypes: {
+    avatar: {
+      control: false,
+    },
     name: {
       control: 'text',
     },
@@ -21,9 +21,6 @@ const meta = {
     },
     isAddButton: {
       control: 'boolean',
-    },
-    avatar: {
-      control: false,
     },
   },
 } satisfies Meta<typeof StoryThumbnail>;

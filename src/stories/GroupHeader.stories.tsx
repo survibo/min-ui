@@ -10,28 +10,10 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
-    controls: {
-      exclude: ['className', 'style'],
-    },
   },
   argTypes: {
-    name: {
-      control: 'text',
-    },
-    description: {
-      control: 'text',
-    },
     coverImage: {
       control: false,
-    },
-    category: {
-      control: 'text',
-    },
-    isPrivate: {
-      control: 'boolean',
-    },
-    memberCount: {
-      control: { type: 'number', min: 0 },
     },
     actions: {
       control: false,
@@ -41,6 +23,21 @@ const meta = {
     },
     tabs: {
       control: false,
+    },
+    name: {
+      control: 'text',
+    },
+    description: {
+      control: 'text',
+    },
+    category: {
+      control: 'text',
+    },
+    isPrivate: {
+      control: 'boolean',
+    },
+    memberCount: {
+      control: { type: 'number', min: 0 },
     },
   },
 } satisfies Meta<typeof GroupHeader>;

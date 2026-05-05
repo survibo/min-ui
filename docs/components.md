@@ -47,21 +47,42 @@ boundaries, empty states, and infinite scroll containers.
 Use cross-cutting components when the behavior is shared across unrelated UI
 areas rather than belonging to one specific component hierarchy.
 
+## Pages
+
+Pages are screen-level compositions assembled from organisms, molecules, and atoms.
+
+They are not intended for production routing. Instead, they serve as simulated screen previews — closer to a mock screen simulator than real app views.
+
+Pages must support responsive layouts across desktop, tablet, and mobile breakpoints.
+
+Since pages are primarily intended for mock design verification, it is strongly recommended to compose them using existing organisms and molecules rather than introducing new components.
+
+## Accessible Names
+
+Prefer visible text labels over `aria-label`.
+
+Use `aria-label` only for icon-only or textless interactive elements.
+
+If a component has enough data to name its own action, generate the label internally. For example, use the file name for a remove button.
+
+Accept a prop for context-dependent labels, and apply `aria-label` only when the caller provides it.
+
+Never add generic fallback names such as `button`, `checkbox`, or `menu`.
+
+Tooltip content does not substitute for an accessible name.
+
 ## Storybook Controls
 
-Storybook should make common visual states easy to try without hiding the public
-API.
+Manage `parameters.controls.exclude` only in `.storybook/preview.ts`.
 
-Expose primitive props in Controls when changing them is useful for visual
-inspection. Examples include labels, text content, variants, sizes, disabled
-states, counts, and simple booleans.
+Controls should expose only props that are useful to edit during visual
+inspection.
 
-Use `argTypes.<prop>.control = false` for complex fixture props that should stay
-visible in Docs but should not be edited in the Controls panel. Examples include
-image data, author objects, action arrays, menu items, tabs, and navigation item
-lists.
+Expose primitive visual props such as text, variants, sizes, disabled states, counts, and simple booleans.
 
-Use `parameters.controls.exclude` for props that should not be part of the
-interactive story surface. Examples include `className`, `style`, `children`,
-render-only composition slots, and callback props that are already represented
-through Storybook actions.
+Use `argTypes.<prop>.control = false` for complex fixture props that should
+remain visible in Docs but should not be edited in Controls.
+
+Use `parameters.controls.exclude` for props that should not appear in Controls, such as `className`, `style`, `children`, render-only slots, and callbacks already represented through Storybook actions. Keep all `exclude` entries in `.storybook/preview.ts`, not individual stories.
+
+Keep story-level `argTypes` for component-specific controls such as variants, sizes, text fields, booleans, and `control: false` entries that are clearer or safer to manage per story.

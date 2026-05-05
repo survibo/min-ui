@@ -9,9 +9,6 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
-    controls: {
-      exclude: ['children', 'className', 'style'],
-    },
   },
   argTypes: {
     hasMore: {

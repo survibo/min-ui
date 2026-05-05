@@ -13,9 +13,6 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
-    controls: {
-      exclude: ['trigger', 'children'],
-    },
   },
   argTypes: {
     align: {

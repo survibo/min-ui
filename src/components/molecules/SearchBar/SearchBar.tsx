@@ -62,6 +62,7 @@ const SearchBar = React.forwardRef<HTMLDivElement, SearchBarProps>(
         {inputValue && (
           <button
             type="button"
+            aria-label="검색어 지우기"
             onClick={handleClear}
             className="absolute right-2 rounded-full p-1 hover:bg-[var(--color-surface-subtle)]"
           >

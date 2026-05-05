@@ -8,19 +8,10 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
-    controls: {
-      exclude: ['className', 'style'],
-    },
   },
   argTypes: {
     avatar: {
       control: false,
-    },
-    name: {
-      control: 'text',
-    },
-    content: {
-      control: 'text',
     },
     image: {
       control: false,
@@ -30,6 +21,12 @@ const meta = {
     },
     replyTo: {
       control: false,
+    },
+    name: {
+      control: 'text',
+    },
+    content: {
+      control: 'text',
     },
     isOwn: {
       control: 'boolean',

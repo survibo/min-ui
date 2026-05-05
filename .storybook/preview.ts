@@ -4,6 +4,18 @@ import '../src/styles/globals.css';
 const preview: Preview = {
   parameters: {
     controls: {
+      exclude: [
+        'asChild',
+        'children',
+        'childrenWhenUnauthorized',
+        'className',
+        'defaultValue',
+        'fallback',
+        'style',
+        'trigger',
+        'value',
+        /^on[A-Z].*/,
+      ],
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,

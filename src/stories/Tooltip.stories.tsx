@@ -9,9 +9,6 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
-    controls: {
-      exclude: ['children', 'className', 'style'],
-    },
   },
   argTypes: {
     side: {
@@ -28,9 +25,6 @@ const meta = {
     },
     delayDuration: {
       control: { type: 'number', min: 0, step: 100 },
-    },
-    disableHoverableContent: {
-      control: 'boolean',
     },
   },
 } satisfies Meta<typeof Tooltip>;
@@ -153,7 +147,11 @@ export const IconButton: Story = {
   args: {
     content: 'Settings',
     children: (
-      <button className="p-2 rounded-lg hover:bg-[var(--color-surface-subtle)]">
+      <button
+        type="button"
+        aria-label="Settings"
+        className="p-2 rounded-lg hover:bg-[var(--color-surface-subtle)]"
+      >
         <LucideIcons.Settings className="w-5 h-5" />
       </button>
     ),
@@ -174,7 +172,11 @@ export const IconOnly: Story = {
   args: {
     content: '설정',
     children: (
-      <button className="p-2 rounded-lg hover:bg-[var(--color-surface-subtle)]">
+      <button
+        type="button"
+        aria-label="설정"
+        className="p-2 rounded-lg hover:bg-[var(--color-surface-subtle)]"
+      >
         <LucideIcons.Settings className="w-5 h-5" />
       </button>
     ),

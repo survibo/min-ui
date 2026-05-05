@@ -8,20 +8,8 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
-    controls: {
-      exclude: ['className', 'style'],
-    },
   },
   argTypes: {
-    name: {
-      control: 'text',
-    },
-    role: {
-      control: 'text',
-    },
-    href: {
-      control: 'text',
-    },
     avatar: {
       control: false,
     },
@@ -30,6 +18,15 @@ const meta = {
     },
     tagProps: {
       control: false,
+    },
+    name: {
+      control: 'text',
+    },
+    role: {
+      control: 'text',
+    },
+    href: {
+      control: 'text',
     },
   },
 } satisfies Meta<typeof UserChip>;

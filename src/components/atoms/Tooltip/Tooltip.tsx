@@ -22,14 +22,16 @@ const tooltipArrowVariants = cva('fill-[var(--color-surface-overlay)]');
 
 export interface TooltipProps
   extends
-    React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Root>,
+    Omit<
+      React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Root>,
+      'disableHoverableContent'
+    >,
     VariantProps<typeof tooltipContentVariants> {
   content: React.ReactNode;
   children: React.ReactNode;
   side?: 'top' | 'right' | 'bottom' | 'left';
   align?: 'start' | 'center' | 'end';
   delayDuration?: number;
-  disableHoverableContent?: boolean;
 }
 
 const TooltipProvider = TooltipPrimitive.Provider;
@@ -41,14 +43,9 @@ const Tooltip = ({
   side = 'top',
   align = 'center',
   delayDuration = 300,
-  disableHoverableContent,
   ...props
 }: TooltipProps) => (
-  <TooltipPrimitive.Root
-    delayDuration={delayDuration}
-    disableHoverableContent={disableHoverableContent}
-    {...props}
-  >
+  <TooltipPrimitive.Root delayDuration={delayDuration} {...props}>
     <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Content

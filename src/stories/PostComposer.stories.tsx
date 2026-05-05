@@ -9,19 +9,6 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
-    controls: {
-      exclude: [
-        'className',
-        'style',
-        'value',
-        'defaultValue',
-        'onValueChange',
-        'onSubmit',
-        'onAttachImage',
-        'onAttachFile',
-        'onAttachLink',
-      ],
-    },
   },
   argTypes: {
     author: {

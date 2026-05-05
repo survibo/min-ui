@@ -10,6 +10,10 @@ You can use Tailwind (v4), Radix UI, and Cross Variance Authority (CVA).
 
 Using UTF-8 when Character encoding error
 
+Check docs\components.md and follow the rule
+
+Ask your questions in text form.
+
 ## 1. Think Before Coding
 
 **Don't assume. Don't hide confusion. Surface tradeoffs.**

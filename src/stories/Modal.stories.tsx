@@ -15,9 +15,6 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
-    controls: {
-      exclude: ['children'],
-    },
   },
   argTypes: {
     defaultOpen: {

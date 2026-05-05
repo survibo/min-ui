@@ -78,6 +78,7 @@ const FileChip = React.forwardRef<HTMLDivElement, FileChipProps>(
         {onRemove && (
           <button
             type="button"
+            aria-label={`${fileName} 제거`}
             onClick={onRemove}
             className="ml-1 rounded p-0.5 hover:bg-[var(--color-surface-subtle)]"
           >

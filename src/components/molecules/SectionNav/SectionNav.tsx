@@ -1,9 +1,11 @@
 import * as React from 'react';
+import type { LucideIcon } from 'lucide-react';
 import { Link } from '../../atoms/Link';
 
 export interface SectionNavItem {
   label: string;
   href?: string;
+  icon?: LucideIcon;
   isActive?: boolean;
   onClick?: () => void;
 }
@@ -12,6 +14,7 @@ export interface SectionNavProps
   extends Omit<React.HTMLAttributes<HTMLElement>, 'children'> {
   items: SectionNavItem[];
   ariaLabel?: string;
+  collapsed?: boolean;
   orientation?: 'horizontal' | 'vertical';
 }
 
@@ -22,13 +25,16 @@ const getRootClassName = (orientation: NonNullable<SectionNavProps['orientation'
 
 const getItemClassName = (
   orientation: NonNullable<SectionNavProps['orientation']>,
-  isActive?: boolean
+  isActive?: boolean,
+  collapsed?: boolean
 ) => {
   const base =
-    'inline-flex shrink-0 items-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)]';
+    'inline-flex shrink-0 items-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)]';
 
   if (orientation === 'vertical') {
-    return `${base} h-9 w-full rounded-md border-l-2 px-3 ${
+    return `${base} h-9 rounded-md border-l-2 px-3 ${
+      collapsed ? 'w-10 justify-center' : 'w-full'
+    } ${
       isActive
         ? 'border-[var(--color-action-default)] bg-[var(--color-surface-subtle)] text-[var(--color-text-primary)]'
         : 'border-transparent text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-subtle)] hover:text-[var(--color-text-primary)]'
@@ -46,7 +52,8 @@ const SectionNav = React.forwardRef<HTMLElement, SectionNavProps>(
   (
     {
       items,
-      ariaLabel = '섹션 메뉴',
+      ariaLabel,
+      collapsed = false,
       orientation = 'horizontal',
       className,
       ...props
@@ -56,31 +63,54 @@ const SectionNav = React.forwardRef<HTMLElement, SectionNavProps>(
     return (
       <nav
         ref={ref}
-        aria-label={ariaLabel}
+        {...(ariaLabel ? { 'aria-label': ariaLabel } : {})}
         className={`${getRootClassName(orientation)} ${className ?? ''}`}
         {...props}
       >
-        {items.map((item) =>
-          item.href ? (
+        {items.map((item) => {
+          const Icon = item.icon;
+          const content = (
+            <>
+              {Icon && (
+                <Icon
+                  className="h-4 w-4 shrink-0"
+                  aria-hidden="true"
+                />
+              )}
+              {!collapsed && <span>{item.label}</span>}
+            </>
+          );
+
+          return item.href ? (
             <Link
               key={item.label}
               href={item.href}
+              aria-label={collapsed ? item.label : undefined}
               underline="none"
-              className={getItemClassName(orientation, item.isActive)}
+              className={getItemClassName(
+                orientation,
+                item.isActive,
+                collapsed
+              )}
             >
-              {item.label}
+              {content}
             </Link>
           ) : (
             <button
               key={item.label}
               type="button"
-              className={getItemClassName(orientation, item.isActive)}
+              aria-label={collapsed ? item.label : undefined}
+              className={getItemClassName(
+                orientation,
+                item.isActive,
+                collapsed
+              )}
               onClick={item.onClick}
             >
-              {item.label}
+              {content}
             </button>
-          )
-        )}
+          );
+        })}
       </nav>
     );
   }

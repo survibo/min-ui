@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { ComponentProps } from 'react';
 import { Checkbox } from '../components/atoms';
 
 const meta = {
@@ -7,9 +8,6 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
-    controls: {
-      exclude: ['className', 'style', 'asChild'],
-    },
   },
   argTypes: {
     checked: {
@@ -25,26 +23,39 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const renderWithLabel = (args: ComponentProps<typeof Checkbox>) => (
+  <label className="flex items-center gap-2 cursor-pointer">
+    <Checkbox {...args} />
+    <span className="text-sm text-[var(--color-text-primary)]">
+      약관에 동의합니다
+    </span>
+  </label>
+);
+
 export const Default: Story = {
   args: {},
+  render: renderWithLabel,
 };
 
 export const Checked: Story = {
   args: {
     checked: true,
   },
+  render: renderWithLabel,
 };
 
 export const Indeterminate: Story = {
   args: {
     checked: 'indeterminate',
   },
+  render: renderWithLabel,
 };
 
 export const Disabled: Story = {
   args: {
     disabled: true,
   },
+  render: renderWithLabel,
 };
 
 export const DisabledChecked: Story = {
@@ -52,6 +63,7 @@ export const DisabledChecked: Story = {
     checked: true,
     disabled: true,
   },
+  render: renderWithLabel,
 };
 
 export const WithLabel: Story = {
