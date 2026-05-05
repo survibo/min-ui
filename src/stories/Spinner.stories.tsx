@@ -7,6 +7,9 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    controls: {
+      exclude: ['className', 'style'],
+    },
   },
   argTypes: {
     size: {
@@ -16,6 +19,9 @@ const meta = {
     spinnerColor: {
       control: 'select',
       options: ['default', 'primary', 'secondary', 'white'],
+    },
+    label: {
+      control: 'text',
     },
   },
 } satisfies Meta<typeof Spinner>;
@@ -28,6 +34,7 @@ export const Default: Story = {
 };
 
 export const WithLabel: Story = {
+  name: 'Screen reader label',
   args: {
     label: '로딩 중...',
   },

@@ -7,6 +7,29 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style', 'avatar'],
+    },
+  },
+  argTypes: {
+    name: {
+      control: 'text',
+    },
+    preview: {
+      control: 'text',
+    },
+    time: {
+      control: 'date',
+    },
+    unreadCount: {
+      control: { type: 'number', min: 0 },
+    },
+    isOnline: {
+      control: 'boolean',
+    },
+    onClick: {
+      action: 'click',
+    },
   },
 } satisfies Meta<typeof ChatRoomItem>;
 

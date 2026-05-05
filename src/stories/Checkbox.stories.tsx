@@ -7,6 +7,18 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style', 'asChild'],
+    },
+  },
+  argTypes: {
+    checked: {
+      control: 'select',
+      options: [false, true, 'indeterminate'],
+    },
+    disabled: {
+      control: 'boolean',
+    },
   },
 } satisfies Meta<typeof Checkbox>;
 
@@ -25,7 +37,7 @@ export const Checked: Story = {
 
 export const Indeterminate: Story = {
   args: {
-    checked: undefined,
+    checked: 'indeterminate',
   },
 };
 

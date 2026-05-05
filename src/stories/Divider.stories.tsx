@@ -7,6 +7,9 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style'],
+    },
   },
   argTypes: {
     orientation: {
@@ -16,6 +19,9 @@ const meta = {
     variant: {
       control: 'select',
       options: ['default', 'strong', 'subtle'],
+    },
+    decorative: {
+      control: 'boolean',
     },
   },
 } satisfies Meta<typeof Divider>;

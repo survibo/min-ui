@@ -7,6 +7,9 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style', 'asChild'],
+    },
   },
   argTypes: {
     variant: {
@@ -16,6 +19,18 @@ const meta = {
     underline: {
       control: 'select',
       options: ['always', 'hover', 'none'],
+    },
+    href: {
+      control: 'text',
+    },
+    external: {
+      control: 'boolean',
+    },
+    children: {
+      control: 'text',
+    },
+    onClick: {
+      action: 'click',
     },
   },
 } satisfies Meta<typeof Link>;
@@ -82,6 +97,5 @@ export const WithOnClick: Story = {
   args: {
     href: '#',
     children: 'Clickable link',
-    onClick: () => console.log('link clicked'),
   },
 };

@@ -2,12 +2,38 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { NotificationDot } from '../components/molecules';
 import * as LucideIcons from 'lucide-react';
 
+const iconMap = {
+  Bell: LucideIcons.Bell,
+  Mail: LucideIcons.Mail,
+  Home: LucideIcons.Home,
+  Search: LucideIcons.Search,
+};
+
 const meta = {
   title: 'Molecules/NotificationDot',
   component: NotificationDot,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    controls: {
+      exclude: ['className', 'style'],
+    },
+  },
+  argTypes: {
+    icon: {
+      control: 'select',
+      options: Object.keys(iconMap),
+      mapping: iconMap,
+    },
+    showBadge: {
+      control: 'boolean',
+    },
+    count: {
+      control: { type: 'number', min: 0 },
+    },
+    badge: {
+      control: 'object',
+    },
   },
 } satisfies Meta<typeof NotificationDot>;
 
@@ -24,6 +50,10 @@ export const WithCount: Story = {
   args: {
     icon: LucideIcons.Bell,
     count: 5,
+    badge: {
+      variant: 'secondary',
+      size: 'sm',
+    },
   },
 };
 

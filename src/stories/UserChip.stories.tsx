@@ -7,6 +7,23 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style', 'linkProps', 'tagProps'],
+    },
+  },
+  argTypes: {
+    name: {
+      control: 'text',
+    },
+    role: {
+      control: 'text',
+    },
+    href: {
+      control: 'text',
+    },
+    avatar: {
+      control: 'object',
+    },
   },
 } satisfies Meta<typeof UserChip>;
 
@@ -35,6 +52,13 @@ export const WithRole: Story = {
   },
 };
 
+export const WithLongRole: Story = {
+  args: {
+    name: '홍길동',
+    role: '학생회 운영진',
+  },
+};
+
 export const WithLink: Story = {
   args: {
     name: '홍길동',
@@ -57,7 +81,7 @@ export const UserList: Story = {
   render: () => (
     <div className="flex flex-wrap items-center gap-2">
       <UserChip name="홍길동" role="학생" />
-      <UserChip name="김철수" role="교수" />
+      <UserChip name="김철수" role="학생회 운영진" />
       <UserChip name="이영희" role="관리자" />
     </div>
   ),

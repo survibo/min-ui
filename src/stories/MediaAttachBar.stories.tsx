@@ -7,6 +7,20 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style'],
+    },
+  },
+  argTypes: {
+    onAttachImage: {
+      action: 'attachImage',
+    },
+    onAttachFile: {
+      action: 'attachFile',
+    },
+    onAttachLink: {
+      action: 'attachLink',
+    },
   },
 } satisfies Meta<typeof MediaAttachBar>;
 
@@ -18,9 +32,5 @@ export const Default: Story = {
 };
 
 export const WithHandlers: Story = {
-  args: {
-    onAttachImage: () => console.log('attach image'),
-    onAttachFile: () => console.log('attach file'),
-    onAttachLink: () => console.log('attach link'),
-  },
+  args: {},
 };

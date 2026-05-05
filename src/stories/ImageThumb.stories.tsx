@@ -7,6 +7,9 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    controls: {
+      exclude: ['className', 'style'],
+    },
   },
   argTypes: {
     aspect: {
@@ -21,6 +24,12 @@ const meta = {
       control: 'select',
       options: ['none', 'sm', 'default', 'lg', 'full'],
     },
+    src: {
+      control: 'text',
+    },
+    alt: {
+      control: 'text',
+    },
   },
 } satisfies Meta<typeof ImageThumb>;
 
@@ -28,7 +37,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    size: 'md',
+  },
 };
 
 export const WithImage: Story = {

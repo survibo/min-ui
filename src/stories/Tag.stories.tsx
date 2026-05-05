@@ -7,6 +7,9 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style'],
+    },
   },
   argTypes: {
     variant: {
@@ -16,6 +19,9 @@ const meta = {
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
+    },
+    children: {
+      control: 'text',
     },
   },
 } satisfies Meta<typeof Tag>;

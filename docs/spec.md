@@ -115,3 +115,5 @@ Facebook 그룹과 유사한 구조
 
 - 개인 활동 등을 위한 빈 강의실 사용 시간 사전 예약
 - 예약 슬롯은 매주 초기화
+
+https://www.figma.com/design/dv0uhkgITrEzaveKlbG7Em/KMLA-Online-App?node-id=0-1&m=dev&t=cRmfjnibjdUCwUyx-1

@@ -7,11 +7,20 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style'],
+    },
   },
   argTypes: {
     variant: {
       control: 'select',
       options: ['default', 'card', 'avatar', 'text'],
+    },
+    width: {
+      control: { type: 'number', min: 0 },
+    },
+    height: {
+      control: { type: 'number', min: 0 },
     },
   },
 } satisfies Meta<typeof Skeleton>;

@@ -7,11 +7,26 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style', 'asChild'],
+    },
   },
   argTypes: {
+    time: {
+      control: 'text',
+    },
     status: {
       control: 'select',
       options: ['available', 'booked', 'mine'],
+    },
+    disabled: {
+      control: 'boolean',
+    },
+    onBook: {
+      action: 'book',
+    },
+    onCancel: {
+      action: 'cancel',
     },
   },
 } satisfies Meta<typeof TimeSlotButton>;

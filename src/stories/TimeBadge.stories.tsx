@@ -7,6 +7,9 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style'],
+    },
   },
   argTypes: {
     size: {
@@ -17,13 +20,16 @@ const meta = {
       control: 'select',
       options: ['relative', 'absolute'],
     },
+    date: {
+      control: 'date',
+    },
   },
 } satisfies Meta<typeof TimeBadge>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const now = new Date();
+const now = new Date('2026-01-15T12:00:00.000Z');
 const oneMinuteAgo = new Date(now.getTime() - 60 * 1000);
 const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
 const oneDayAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);

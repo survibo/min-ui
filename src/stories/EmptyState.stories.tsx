@@ -7,11 +7,23 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    controls: {
+      exclude: ['className', 'style', 'icon'],
+    },
   },
   argTypes: {
     variant: {
       control: 'select',
       options: ['default', 'inbox', 'search', 'users', 'messages', 'posts'],
+    },
+    title: {
+      control: 'text',
+    },
+    description: {
+      control: 'text',
+    },
+    action: {
+      control: 'object',
     },
   },
 } satisfies Meta<typeof EmptyState>;
@@ -46,7 +58,6 @@ export const Posts: Story = {
     description: '첫 번째 게시물을 작성해보세요!',
     action: {
       label: '게시물 작성',
-      onClick: () => console.log('Create post'),
     },
   },
 };

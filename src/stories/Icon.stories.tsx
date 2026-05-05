@@ -2,14 +2,32 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Icon } from '../components/atoms';
 import * as LucideIcons from 'lucide-react';
 
+const iconMap = {
+  Home: LucideIcons.Home,
+  Mail: LucideIcons.Mail,
+  Heart: LucideIcons.Heart,
+  CheckCircle: LucideIcons.CheckCircle,
+  AlertTriangle: LucideIcons.AlertTriangle,
+  AlertCircle: LucideIcons.AlertCircle,
+  Info: LucideIcons.Info,
+};
+
 const meta = {
   title: 'Atoms/Icon',
   component: Icon,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    controls: {
+      exclude: ['className', 'style'],
+    },
   },
   argTypes: {
+    icon: {
+      control: 'select',
+      options: Object.keys(iconMap),
+      mapping: iconMap,
+    },
     size: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg', 'xl'],
@@ -25,6 +43,9 @@ const meta = {
         'warning',
         'error',
       ],
+    },
+    label: {
+      control: 'text',
     },
   },
 } satisfies Meta<typeof Icon>;

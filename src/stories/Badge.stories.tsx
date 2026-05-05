@@ -7,22 +7,35 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style', 'children'],
+    },
   },
   argTypes: {
     variant: {
       control: 'select',
       options: [
+        'default',
         'primary',
         'secondary',
         'success',
         'warning',
         'error',
-        'outline',
+        'dot',
       ],
     },
     size: {
       control: 'select',
-      options: ['sm', 'md'],
+      options: ['sm', 'md', 'lg', 'dot'],
+    },
+    count: {
+      control: { type: 'number', min: 0 },
+    },
+    maxCount: {
+      control: { type: 'number', min: 1 },
+    },
+    showZero: {
+      control: 'boolean',
     },
   },
 } satisfies Meta<typeof Badge>;
@@ -82,6 +95,22 @@ export const Large: Story = {
   args: {
     count: 100,
     variant: 'secondary',
+    size: 'lg',
+  },
+};
+
+export const Dot: Story = {
+  args: {
+    variant: 'dot',
+    size: 'dot',
+  },
+};
+
+export const ShowZero: Story = {
+  args: {
+    count: 0,
+    showZero: true,
+    variant: 'primary',
     size: 'md',
   },
 };

@@ -7,6 +7,9 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style'],
+    },
   },
   argTypes: {
     variant: {
@@ -21,6 +24,12 @@ const meta = {
     },
     maxRows: {
       control: { type: 'number', min: 1, max: 12 },
+    },
+    disabled: {
+      control: 'boolean',
+    },
+    placeholder: {
+      control: 'text',
     },
   },
 } satisfies Meta<typeof Textarea>;

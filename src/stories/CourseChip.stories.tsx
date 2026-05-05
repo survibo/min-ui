@@ -7,6 +7,23 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style'],
+    },
+  },
+  argTypes: {
+    name: {
+      control: 'text',
+    },
+    time: {
+      control: 'text',
+    },
+    location: {
+      control: 'text',
+    },
+    onRemove: {
+      action: 'remove',
+    },
   },
 } satisfies Meta<typeof CourseChip>;
 
@@ -26,7 +43,6 @@ export const WithRemove: Story = {
     name: '알고리즘',
     time: '수 1-2',
     location: '공학관 201',
-    onRemove: () => console.log('remove clicked'),
   },
 };
 

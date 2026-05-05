@@ -9,6 +9,9 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style', 'reactions'],
+    },
   },
 } satisfies Meta<typeof ReactionBar>;
 

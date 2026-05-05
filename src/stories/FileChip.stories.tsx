@@ -7,6 +7,9 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style'],
+    },
   },
   argTypes: {
     variant: {
@@ -16,6 +19,15 @@ const meta = {
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
+    },
+    fileName: {
+      control: 'text',
+    },
+    fileSize: {
+      control: { type: 'number', min: 0 },
+    },
+    onRemove: {
+      action: 'remove',
     },
   },
 } satisfies Meta<typeof FileChip>;
@@ -53,7 +65,6 @@ export const Error: Story = {
 export const WithRemove: Story = {
   args: {
     fileName: 'removable-file.pdf',
-    onRemove: () => console.log('remove clicked'),
   },
 };
 

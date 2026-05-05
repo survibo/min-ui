@@ -9,6 +9,9 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    controls: {
+      exclude: ['children', 'className', 'style'],
+    },
   },
   argTypes: {
     side: {
@@ -18,6 +21,16 @@ const meta = {
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
+    },
+    align: {
+      control: 'select',
+      options: ['start', 'center', 'end'],
+    },
+    delayDuration: {
+      control: { type: 'number', min: 0, step: 100 },
+    },
+    disableHoverableContent: {
+      control: 'boolean',
     },
   },
 } satisfies Meta<typeof Tooltip>;
@@ -148,6 +161,7 @@ export const IconButton: Story = {
 };
 
 export const IconOnly: Story = {
+  name: 'Icon button tooltip',
   decorators: [
     (Story) => (
       <TooltipProvider>
@@ -158,7 +172,7 @@ export const IconOnly: Story = {
     ),
   ],
   args: {
-    content: '',
+    content: '설정',
     children: (
       <button className="p-2 rounded-lg hover:bg-[var(--color-surface-subtle)]">
         <LucideIcons.Settings className="w-5 h-5" />

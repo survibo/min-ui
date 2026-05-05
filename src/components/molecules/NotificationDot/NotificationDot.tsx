@@ -12,7 +12,7 @@ export interface NotificationDotProps {
 }
 
 const NotificationDot = React.forwardRef<HTMLDivElement, NotificationDotProps>(
-  ({ icon: Icon, showBadge = true, count, className }, ref) => {
+  ({ icon: Icon, badge, showBadge = true, count, className }, ref) => {
     return (
       <div ref={ref} className={`relative inline-flex ${className ?? ''}`}>
         <Icon className="h-5 w-5" />
@@ -22,6 +22,7 @@ const NotificationDot = React.forwardRef<HTMLDivElement, NotificationDotProps>(
               variant="secondary"
               size="sm"
               count={count}
+              {...badge}
               className="absolute -top-1 -right-1"
             />
           ) : (

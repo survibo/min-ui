@@ -15,6 +15,20 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    controls: {
+      exclude: ['children'],
+    },
+  },
+  argTypes: {
+    defaultOpen: {
+      control: 'boolean',
+    },
+    open: {
+      control: 'boolean',
+    },
+    onOpenChange: {
+      action: 'openChange',
+    },
   },
 } satisfies Meta<typeof Modal>;
 
@@ -69,6 +83,24 @@ export const WithForm: Story = {
         <ModalFooter>
           <Button variant="secondary">Cancel</Button>
           <Button variant="primary">Submit</Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  ),
+};
+
+export const WithoutCloseButton: Story = {
+  render: () => (
+    <Modal defaultOpen>
+      <ModalContent showClose={false}>
+        <ModalHeader>
+          <ModalTitle>닫기 버튼 없음</ModalTitle>
+          <ModalDescription>
+            `ModalContent`의 `showClose`가 false인 상태입니다.
+          </ModalDescription>
+        </ModalHeader>
+        <ModalFooter>
+          <Button variant="primary">확인</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

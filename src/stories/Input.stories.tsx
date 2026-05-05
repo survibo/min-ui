@@ -7,11 +7,31 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style'],
+    },
   },
   argTypes: {
+    variant: {
+      control: 'select',
+      options: ['default', 'error'],
+    },
     inputSize: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
+    },
+    type: {
+      control: 'select',
+      options: ['text', 'email', 'password', 'search', 'number', 'tel', 'url'],
+    },
+    placeholder: {
+      control: 'text',
+    },
+    disabled: {
+      control: 'boolean',
+    },
+    readOnly: {
+      control: 'boolean',
     },
   },
 } satisfies Meta<typeof Input>;
@@ -43,6 +63,7 @@ export const WithValue: Story = {
 
 export const Error: Story = {
   args: {
+    variant: 'error',
     placeholder: 'Enter text...',
     inputSize: 'md',
   },

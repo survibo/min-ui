@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button } from '../components/atoms';
+import { Button, Spinner } from '../components/atoms';
 
 const meta = {
   title: 'Atoms/Button',
@@ -7,6 +7,9 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style', 'asChild'],
+    },
   },
   argTypes: {
     variant: {
@@ -87,7 +90,12 @@ export const Loading: Story = {
   args: {
     variant: 'primary',
     size: 'md',
-    children: 'Loading...',
     disabled: true,
   },
+  render: (args) => (
+    <Button {...args}>
+      <Spinner size="sm" spinnerColor="white" />
+      <span>Loading...</span>
+    </Button>
+  ),
 };

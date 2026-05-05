@@ -8,6 +8,23 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['children', 'className', 'style', 'labelProps', 'errorProps'],
+    },
+  },
+  argTypes: {
+    label: {
+      control: 'text',
+    },
+    required: {
+      control: 'boolean',
+    },
+    error: {
+      control: 'text',
+    },
+    inputProps: {
+      control: 'object',
+    },
   },
 } satisfies Meta<typeof FormField>;
 

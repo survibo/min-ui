@@ -7,6 +7,29 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style', 'avatar'],
+    },
+  },
+  argTypes: {
+    title: {
+      control: 'text',
+    },
+    description: {
+      control: 'text',
+    },
+    time: {
+      control: 'date',
+    },
+    isRead: {
+      control: 'boolean',
+    },
+    onClick: {
+      action: 'click',
+    },
+    onMarkAsRead: {
+      action: 'markAsRead',
+    },
   },
 } satisfies Meta<typeof NotificationItem>;
 
@@ -43,6 +66,19 @@ export const Read: Story = {
     description: '이미 읽은 알림입니다',
     time: new Date(),
     isRead: true,
+  },
+};
+
+export const WithAvatar: Story = {
+  args: {
+    title: '홍길동님이 댓글을 달았습니다',
+    description: '게시물: 오늘의 수업이 재미있었어요!',
+    time: new Date(),
+    isRead: false,
+    avatar: {
+      src: 'https://picsum.photos/200',
+      fallback: '홍길동',
+    },
   },
 };
 

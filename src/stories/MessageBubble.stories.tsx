@@ -7,6 +7,29 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style', 'avatar'],
+    },
+  },
+  argTypes: {
+    name: {
+      control: 'text',
+    },
+    content: {
+      control: 'text',
+    },
+    image: {
+      control: 'text',
+    },
+    file: {
+      control: 'object',
+    },
+    isOwn: {
+      control: 'boolean',
+    },
+    time: {
+      control: 'date',
+    },
   },
 } satisfies Meta<typeof MessageBubble>;
 
@@ -34,6 +57,18 @@ export const WithImage: Story = {
   args: {
     name: '홍길동',
     image: 'https://picsum.photos/200',
+    time: new Date(),
+  },
+};
+
+export const WithFile: Story = {
+  args: {
+    name: '홍길동',
+    content: '첨부 파일을 확인해주세요.',
+    file: {
+      name: 'lecture-note.pdf',
+      size: 1024 * 256,
+    },
     time: new Date(),
   },
 };

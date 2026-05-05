@@ -7,6 +7,18 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style'],
+    },
+  },
+  argTypes: {
+    status: {
+      control: 'select',
+      options: ['pending', 'approved', 'rejected'],
+    },
+    message: {
+      control: 'text',
+    },
   },
 } satisfies Meta<typeof ApprovalStatusBanner>;
 

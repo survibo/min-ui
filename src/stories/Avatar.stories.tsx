@@ -7,11 +7,23 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
+    controls: {
+      exclude: ['className', 'style', 'asChild'],
+    },
   },
   argTypes: {
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+    },
+    src: {
+      control: 'text',
+    },
+    fallback: {
+      control: 'text',
+    },
+    alt: {
+      control: 'text',
     },
   },
 } satisfies Meta<typeof Avatar>;
@@ -37,7 +49,7 @@ export const WithImage: Story = {
 export const ExtraLarge: Story = {
   args: {
     fallback: 'Jane Smith',
-    size: 'lg',
+    size: 'xl',
   },
 };
 
