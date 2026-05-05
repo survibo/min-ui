@@ -11,7 +11,8 @@ const dividerVariants = cva('shrink-0', {
     variant: {
       default: 'bg-[var(--color-border-default)]',
       strong: 'bg-[var(--color-border-strong)]',
-      subtle: 'bg-[var(--color-surface-subtle)]',
+      subtle:
+        'bg-[color-mix(in_srgb,var(--color-border-default)_70%,var(--color-surface-subtle))]',
     },
   },
   defaultVariants: {

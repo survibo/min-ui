@@ -18,13 +18,12 @@ const meta = {
         'onComment',
         'onShare',
         'onMore',
-        'images',
       ],
     },
   },
   argTypes: {
     author: {
-      control: 'object',
+      control: false,
     },
     content: {
       control: 'text',
@@ -38,11 +37,14 @@ const meta = {
     groupHref: {
       control: 'text',
     },
+    images: {
+      control: false,
+    },
     moreMenuItems: {
-      control: 'object',
+      control: false,
     },
     stats: {
-      control: 'object',
+      control: false,
     },
     isLiked: {
       control: 'boolean',

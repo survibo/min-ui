@@ -9,7 +9,7 @@ const meta = {
   parameters: {
     layout: 'padded',
     controls: {
-      exclude: ['className', 'style', 'linkProps', 'tagProps'],
+      exclude: ['className', 'style'],
     },
   },
   argTypes: {
@@ -23,7 +23,13 @@ const meta = {
       control: 'text',
     },
     avatar: {
-      control: 'object',
+      control: false,
+    },
+    linkProps: {
+      control: false,
+    },
+    tagProps: {
+      control: false,
     },
   },
 } satisfies Meta<typeof UserChip>;

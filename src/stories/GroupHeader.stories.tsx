@@ -11,14 +11,7 @@ const meta = {
   parameters: {
     layout: 'padded',
     controls: {
-      exclude: [
-        'className',
-        'style',
-        'coverImage',
-        'actions',
-        'moreMenuItems',
-        'tabs',
-      ],
+      exclude: ['className', 'style'],
     },
   },
   argTypes: {
@@ -28,6 +21,9 @@ const meta = {
     description: {
       control: 'text',
     },
+    coverImage: {
+      control: false,
+    },
     category: {
       control: 'text',
     },
@@ -36,6 +32,15 @@ const meta = {
     },
     memberCount: {
       control: { type: 'number', min: 0 },
+    },
+    actions: {
+      control: false,
+    },
+    moreMenuItems: {
+      control: false,
+    },
+    tabs: {
+      control: false,
     },
   },
 } satisfies Meta<typeof GroupHeader>;

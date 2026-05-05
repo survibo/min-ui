@@ -13,7 +13,7 @@ const meta = {
   },
   argTypes: {
     image: {
-      control: 'object',
+      control: false,
     },
     name: {
       control: 'text',

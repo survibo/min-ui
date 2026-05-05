@@ -32,7 +32,7 @@ const meta = {
       control: { type: 'number', min: 0 },
     },
     badge: {
-      control: 'object',
+      control: false,
     },
   },
 } satisfies Meta<typeof NotificationDot>;

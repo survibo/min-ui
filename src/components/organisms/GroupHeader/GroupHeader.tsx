@@ -10,13 +10,13 @@ import { Button, type ButtonProps } from '../../atoms/Button';
 import { Divider } from '../../atoms/Divider';
 import { IconButton } from '../../atoms/IconButton';
 import { ImageThumb } from '../../atoms/ImageThumb';
-import { Link } from '../../atoms/Link';
 import { Tag } from '../../atoms/Tag';
 import {
   DropdownMenu,
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from '../../molecules/DropdownMenu';
+import { SectionNav, type SectionNavItem } from '../../molecules/SectionNav';
 
 export interface GroupHeaderImage {
   src?: string;
@@ -39,13 +39,6 @@ export interface GroupHeaderMenuItem {
   onSelect?: () => void;
 }
 
-export interface GroupHeaderTab {
-  label: string;
-  href?: string;
-  isActive?: boolean;
-  onClick?: () => void;
-}
-
 export interface GroupHeaderProps
   extends Omit<React.HTMLAttributes<HTMLElement>, 'children'> {
   name: string;
@@ -56,17 +49,10 @@ export interface GroupHeaderProps
   memberCount?: number;
   actions?: GroupHeaderAction[];
   moreMenuItems?: GroupHeaderMenuItem[];
-  tabs?: GroupHeaderTab[];
+  tabs?: SectionNavItem[];
 }
 
 const formatCount = (count: number) => count.toLocaleString();
-
-const tabClassName = (isActive?: boolean) =>
-  `inline-flex h-10 shrink-0 items-center border-b-2 px-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)] ${
-    isActive
-      ? 'border-[var(--color-action-default)] text-[var(--color-text-primary)]'
-      : 'border-transparent text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
-  }`;
 
 const GroupHeader = React.forwardRef<HTMLElement, GroupHeaderProps>(
   (
@@ -189,32 +175,11 @@ const GroupHeader = React.forwardRef<HTMLElement, GroupHeaderProps>(
           {tabs.length > 0 && (
             <>
               <Divider className="mt-5" />
-              <nav
-                aria-label="그룹 메뉴"
-                className="-mb-3 flex gap-1 overflow-x-auto pt-1"
-              >
-                {tabs.map((tab) =>
-                  tab.href ? (
-                    <Link
-                      key={tab.label}
-                      href={tab.href}
-                      underline="none"
-                      className={tabClassName(tab.isActive)}
-                    >
-                      {tab.label}
-                    </Link>
-                  ) : (
-                    <button
-                      key={tab.label}
-                      type="button"
-                      className={tabClassName(tab.isActive)}
-                      onClick={tab.onClick}
-                    >
-                      {tab.label}
-                    </button>
-                  )
-                )}
-              </nav>
+              <SectionNav
+                items={tabs}
+                ariaLabel="그룹 메뉴"
+                className="-mb-3 pt-1"
+              />
             </>
           )}
         </div>

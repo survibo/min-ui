@@ -25,7 +25,7 @@ const meta = {
   },
   argTypes: {
     author: {
-      control: 'object',
+      control: false,
     },
     placeholder: {
       control: 'text',

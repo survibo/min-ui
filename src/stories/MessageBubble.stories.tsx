@@ -9,10 +9,13 @@ const meta = {
   parameters: {
     layout: 'padded',
     controls: {
-      exclude: ['className', 'style', 'avatar'],
+      exclude: ['className', 'style'],
     },
   },
   argTypes: {
+    avatar: {
+      control: false,
+    },
     name: {
       control: 'text',
     },
@@ -20,12 +23,24 @@ const meta = {
       control: 'text',
     },
     image: {
-      control: 'text',
+      control: false,
     },
     file: {
-      control: 'object',
+      control: false,
+    },
+    replyTo: {
+      control: false,
     },
     isOwn: {
+      control: 'boolean',
+    },
+    showAvatar: {
+      control: 'boolean',
+    },
+    showName: {
+      control: 'boolean',
+    },
+    showTime: {
       control: 'boolean',
     },
     time: {
@@ -74,10 +89,56 @@ export const WithFile: Story = {
   },
 };
 
+export const WithReply: Story = {
+  args: {
+    name: '나',
+    content: '좋아요. 그 부분 기준으로 다시 정리해볼게요.',
+    replyTo: {
+      name: '홍길동',
+      content: '스터디 자료 중 3번 문제 설명이 조금 헷갈려요.',
+    },
+    time: new Date(),
+    isOwn: true,
+  },
+};
+
+export const GroupedMessages: Story = {
+  render: () => (
+    <div className="space-y-1 w-80">
+      <MessageBubble
+        avatar={{ fallback: '홍길동' }}
+        name="홍길동"
+        content="오늘 스터디 몇 시에 시작해요?"
+        time={new Date()}
+        showTime={false}
+      />
+      <MessageBubble
+        avatar={{ fallback: '홍길동' }}
+        name="홍길동"
+        content="자료는 제가 먼저 올려둘게요."
+        time={new Date()}
+        showAvatar={false}
+        showName={false}
+      />
+      <MessageBubble
+        name="나"
+        content="7시에 시작하면 될 것 같아요."
+        time={new Date()}
+        isOwn
+      />
+    </div>
+  ),
+} as unknown as Story;
+
 export const Chat: Story = {
   render: () => (
     <div className="space-y-4 w-80">
-      <MessageBubble name="홍길동" content="안녕하세요!" time={new Date()} />
+      <MessageBubble
+        avatar={{ fallback: '홍길동' }}
+        name="홍길동"
+        content="안녕하세요!"
+        time={new Date()}
+      />
       <MessageBubble
         name="나"
         content="네, 안녕하세요!"
@@ -85,6 +146,7 @@ export const Chat: Story = {
         isOwn
       />
       <MessageBubble
+        avatar={{ fallback: '홍길동' }}
         name="홍길동"
         content="좋은 하루 되세요~"
         time={new Date()}

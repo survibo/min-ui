@@ -23,7 +23,7 @@ const meta = {
       control: 'boolean',
     },
     avatar: {
-      control: 'object',
+      control: false,
     },
   },
 } satisfies Meta<typeof StoryThumbnail>;

@@ -8,7 +8,7 @@ const meta = {
   parameters: {
     layout: 'centered',
     controls: {
-      exclude: ['className', 'style', 'icon'],
+      exclude: ['className', 'style'],
     },
   },
   argTypes: {
@@ -23,7 +23,10 @@ const meta = {
       control: 'text',
     },
     action: {
-      control: 'object',
+      control: false,
+    },
+    icon: {
+      control: false,
     },
   },
 } satisfies Meta<typeof EmptyState>;

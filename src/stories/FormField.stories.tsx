@@ -9,7 +9,7 @@ const meta = {
   parameters: {
     layout: 'padded',
     controls: {
-      exclude: ['children', 'className', 'style', 'labelProps', 'errorProps'],
+      exclude: ['children', 'className', 'style'],
     },
   },
   argTypes: {
@@ -23,7 +23,13 @@ const meta = {
       control: 'text',
     },
     inputProps: {
-      control: 'object',
+      control: false,
+    },
+    labelProps: {
+      control: false,
+    },
+    errorProps: {
+      control: false,
     },
   },
 } satisfies Meta<typeof FormField>;

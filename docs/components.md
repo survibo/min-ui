@@ -1,69 +1,67 @@
-컴포넌트를 원자(Atom) → 분자(Molecule) → 유기체(Organism) → 템플릿/페이지 순으로, Atomic Design 방법론 기반으로 정리한다. 각 레이어는 아래 레이어의 컴포넌트를 조합해 구성된다.
+# Component Layering
 
----
+This project follows Atomic Design as a component organization guide.
 
-## Layer 1 — Atoms (최소 단위 UI 요소)
+The actual component catalog lives in Storybook and `src/components`. This
+document only defines what each layer is responsible for.
 
-재사용 가능하고, 더 이상 분해할 수 없는 단위.
+## Atoms
 
-| 컴포넌트     | 설명                                                               |
-| ------------ | ------------------------------------------------------------------ |
-| `Button`     | variant: primary / secondary / ghost / danger, size: sm/md/lg      |
-| `IconButton` | 아이콘만 있는 버튼 (네비게이션, 툴바용)                            |
-| `Input`      | text / password / search, 상태: default / focus / error / disabled |
-| `Textarea`   | 포스트·댓글 입력용 멀티라인 입력                                   |
-| `Checkbox`   | 단일 선택                                                          |
-| `Toggle`     | on/off 스위치                                                      |
-| `Avatar`     | 프로필 이미지 + fallback 이니셜, size: xs/sm/md/lg                 |
-| `Badge`      | 숫자 알림 뱃지, 상태 표시 dot                                      |
-| `Tag`        | 그룹 카테고리, 권한 레이블 등 칩 형태                              |
-| `Icon`       | 아이콘 래퍼 (svg sprite 또는 라이브러리 통일)                      |
-| `Spinner`    | 로딩 인디케이터                                                    |
-| `Skeleton`   | 컨텐츠 로딩 플레이스홀더                                           |
-| `Divider`    | 수평/수직 구분선                                                   |
-| `Tooltip`    | 호버 시 짧은 설명                                                  |
-| `Link`       | 라우터 연동 텍스트 링크                                            |
-| `ImageThumb` | 고정 비율 이미지 (포스트 첨부, 스토리 썸네일)                      |
-| `FileChip`   | DM 파일 전송 시 첨부 파일 표시 칩                                  |
-| `TimeBadge`  | 게시 시간, 메시지 시간 표시                                        |
+Atoms are the smallest reusable UI elements.
 
----
+They should not know product-specific context. Examples include buttons, inputs,
+avatars, dividers, links, loading indicators, and image primitives.
 
-## Layer 2 — Molecules (Atoms 조합)
+Use atoms when the component cannot be meaningfully decomposed into smaller
+project UI components.
 
-단일 역할을 수행하는 작은 UI 블록.
+## Molecules
 
-| 컴포넌트               | 구성 Atoms                                                | 설명                         |
-| ---------------------- | --------------------------------------------------------- | ---------------------------- |
-| `FormField`            | `Input` + `Label` + 에러 텍스트                           | 레이블·입력·에러 메시지 묶음 |
-| `SearchBar`            | `Input` + `Icon` + `IconButton`                           | 검색 입력창                  |
-| `UserChip`             | `Avatar` + `Link` + `Tag`                                 | 이름·역할을 인라인 표시      |
-| `NotificationDot`      | `Badge` + `Icon`                                          | 아이콘 위 알림 뱃지 오버레이 |
-| `ReactionBar`          | `IconButton` × N + 카운트                                 | 좋아요·댓글·공유 액션 행     |
-| `StoryThumbnail`       | `ImageThumb` + `Avatar` + `TimeBadge`                     | 스토리 미리보기 원형         |
-| `ImageGrid`            | `ImageThumb` × N                                          | 게시물 이미지 그리드          |
-| `MessageBubble`        | `Avatar` + 텍스트/`ImageThumb`/`FileChip` + `TimeBadge`   | DM 단일 메시지               |
-| `ChatRoomItem`         | `Avatar` + 이름 + 미리보기 텍스트 + `TimeBadge` + `Badge` | 채팅 목록 한 행              |
-| `NotificationItem`     | `Avatar` + 텍스트 + `TimeBadge`                           | 알림 한 건                   |
-| `GroupCard`            | `ImageThumb` + 그룹명 + `Tag` + 멤버 수                   | 그룹 탐색 카드               |
-| `TimeSlotButton`       | `Button` + 상태(available/booked/mine)                    | 예약 시간 슬롯 단위          |
-| `CourseChip`           | 과목명 + 시간 + `IconButton`(삭제)                        | 시간표 강의 입력 칩          |
-| `ApprovalStatusBanner` | `Icon` + 텍스트 + `Spinner`                               | 관리자 승인 대기 상태 표시   |
-| `DropdownMenu`         | `Button` + 항목 리스트                                    | 컨텍스트 액션 메뉴           |
-| `MediaAttachBar`       | `IconButton` × N (이미지·파일·링크)                       | DM 첨부 툴바                 |
+Molecules combine atoms into a small UI block with one clear role.
 
-## 횡단 관심사 (Cross-cutting)
+They may include local layout and interaction wiring, but should avoid owning
+screen-level behavior. Examples include search bars, user chips, image grids,
+dropdown menus, attachment toolbars, and section navigation.
 
-페이지·Organism에 걸쳐 공통으로 필요한 컴포넌트.
+Use molecules when the same small composition is likely to appear in more than
+one organism or page.
 
-| 컴포넌트                | 설명                              |
-| ----------------------- | --------------------------------- |
-| `Modal`                 | 범용 다이얼로그 래퍼              |
-| `Toast`                 | 성공·오류 토스트 메시지           |
-| `ConfirmDialog`         | 삭제·취소 확인 `Modal`            |
-| `InfiniteScrollWrapper` | 피드·채팅 무한 스크롤 컨테이너    |
-| `ProtectedRoute`        | 인증 상태·권한에 따른 라우팅 가드 |
-| `ErrorBoundary`         | 컴포넌트 단위 오류 격리           |
-| `EmptyState`            | 데이터 없음 일러스트 + 메시지     |
+## Organisms
 
----
+Organisms are larger product-facing UI sections composed from atoms and
+molecules.
+
+They represent meaningful pieces of a user workflow, such as a post card, post
+composer, or group header. Organisms may expose callbacks and state props, but
+should not own data fetching, routing decisions, or application persistence.
+
+Use organisms when the component describes a complete section of a screen.
+
+## Cross-Cutting
+
+Cross-cutting components support behavior used across multiple layers.
+
+Examples include modal dialogs, toasts, protected route wrappers, error
+boundaries, empty states, and infinite scroll containers.
+
+Use cross-cutting components when the behavior is shared across unrelated UI
+areas rather than belonging to one specific component hierarchy.
+
+## Storybook Controls
+
+Storybook should make common visual states easy to try without hiding the public
+API.
+
+Expose primitive props in Controls when changing them is useful for visual
+inspection. Examples include labels, text content, variants, sizes, disabled
+states, counts, and simple booleans.
+
+Use `argTypes.<prop>.control = false` for complex fixture props that should stay
+visible in Docs but should not be edited in the Controls panel. Examples include
+image data, author objects, action arrays, menu items, tabs, and navigation item
+lists.
+
+Use `parameters.controls.exclude` for props that should not be part of the
+interactive story surface. Examples include `className`, `style`, `children`,
+render-only composition slots, and callback props that are already represented
+through Storybook actions.

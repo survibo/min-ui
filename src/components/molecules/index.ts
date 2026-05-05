@@ -48,3 +48,6 @@ export {
 
 export { MediaAttachBar } from './MediaAttachBar';
 export type { MediaAttachBarProps } from './MediaAttachBar';
+
+export { SectionNav } from './SectionNav';
+export type { SectionNavItem, SectionNavProps } from './SectionNav';

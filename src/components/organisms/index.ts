@@ -12,7 +12,6 @@ export type {
   GroupHeaderImage,
   GroupHeaderMenuItem,
   GroupHeaderProps,
-  GroupHeaderTab,
 } from './GroupHeader';
 
 export { PostComposer } from './PostComposer';

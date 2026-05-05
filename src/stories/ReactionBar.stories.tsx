@@ -10,7 +10,12 @@ const meta = {
   parameters: {
     layout: 'padded',
     controls: {
-      exclude: ['className', 'style', 'reactions'],
+      exclude: ['className', 'style'],
+    },
+  },
+  argTypes: {
+    reactions: {
+      control: false,
     },
   },
 } satisfies Meta<typeof ReactionBar>;

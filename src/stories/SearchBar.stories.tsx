@@ -9,10 +9,13 @@ const meta = {
   parameters: {
     layout: 'padded',
     controls: {
-      exclude: ['className', 'style', 'inputProps'],
+      exclude: ['className', 'style'],
     },
   },
   argTypes: {
+    inputProps: {
+      control: false,
+    },
     placeholder: {
       control: 'text',
     },

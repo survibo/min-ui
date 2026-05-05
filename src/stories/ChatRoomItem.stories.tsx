@@ -8,10 +8,13 @@ const meta = {
   parameters: {
     layout: 'padded',
     controls: {
-      exclude: ['className', 'style', 'avatar'],
+      exclude: ['className', 'style'],
     },
   },
   argTypes: {
+    avatar: {
+      control: false,
+    },
     name: {
       control: 'text',
     },

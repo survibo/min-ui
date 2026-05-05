@@ -4,5 +4,4 @@ export type {
   GroupHeaderImage,
   GroupHeaderMenuItem,
   GroupHeaderProps,
-  GroupHeaderTab,
 } from './GroupHeader';

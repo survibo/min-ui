@@ -19,7 +19,7 @@ const meta = {
   },
   argTypes: {
     images: {
-      control: 'object',
+      control: false,
     },
     onImageClick: {
       action: 'imageClick',
