@@ -16,6 +16,9 @@ export type { ReactionBarProps, ReactionItem } from './ReactionBar';
 export { StoryThumbnail } from './StoryThumbnail';
 export type { StoryThumbnailProps } from './StoryThumbnail';
 
+export { ImageGrid } from './ImageGrid';
+export type { ImageGridItem, ImageGridProps } from './ImageGrid';
+
 export { MessageBubble } from './MessageBubble';
 export type { MessageBubbleProps } from './MessageBubble';
 

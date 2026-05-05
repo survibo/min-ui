@@ -23,7 +23,8 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "chromatic"
   },
   "peerDependencies": {
     "react": "^19.2.4",
@@ -35,7 +36,6 @@
     "@storybook/addon-docs": "^10.3.6",
     "@storybook/addon-onboarding": "^10.3.6",
     "@storybook/addon-vitest": "^10.3.6",
-    "@storybook/react": "^10.3.6",
     "@storybook/react-vite": "^10.3.6",
     "@tailwindcss/vite": "^4.2.2",
     "@types/node": "^25.5.0",
@@ -46,6 +46,7 @@
     "@vitejs/plugin-react": "^6.0.1",
     "@vitest/browser-playwright": "^4.1.0",
     "@vitest/coverage-v8": "^4.1.0",
+    "chromatic": "^16.7.0",
     "eslint": "^9.39.4",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react": "^7.37.5",

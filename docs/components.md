@@ -41,6 +41,7 @@
 | `NotificationDot`      | `Badge` + `Icon`                                          | 아이콘 위 알림 뱃지 오버레이 |
 | `ReactionBar`          | `IconButton` × N + 카운트                                 | 좋아요·댓글·공유 액션 행     |
 | `StoryThumbnail`       | `ImageThumb` + `Avatar` + `TimeBadge`                     | 스토리 미리보기 원형         |
+| `ImageGrid`            | `ImageThumb` × N                                          | 게시물 이미지 그리드          |
 | `MessageBubble`        | `Avatar` + 텍스트/`ImageThumb`/`FileChip` + `TimeBadge`   | DM 단일 메시지               |
 | `ChatRoomItem`         | `Avatar` + 이름 + 미리보기 텍스트 + `TimeBadge` + `Badge` | 채팅 목록 한 행              |
 | `NotificationItem`     | `Avatar` + 텍스트 + `TimeBadge`                           | 알림 한 건                   |

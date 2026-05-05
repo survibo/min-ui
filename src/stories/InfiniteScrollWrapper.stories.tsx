@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import * as React from 'react';
 import { Spinner } from '../components/atoms';
 import { InfiniteScrollWrapper } from '../components/cross-cutting';
 
@@ -31,24 +32,49 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const items = Array.from({ length: 12 }, (_, index) => index + 1);
+const initialItemCount = 12;
+const pageSize = 8;
+const maxItemCount = 36;
 
-export const ScrollContainer: Story = {
-  args: {
-    children: null,
-    hasMore: true,
-    isLoading: false,
-    useWindow: false,
-    loader: <Spinner label="더 불러오는 중" />,
-    endMessage: (
-      <span className="text-sm text-[var(--color-text-secondary)]">
-        모든 항목을 불러왔습니다.
-      </span>
-    ),
-  },
-  render: (args) => (
+const InfiniteScrollDemo = ({
+  onLoadMore,
+  hasMore: hasMoreArg,
+  isLoading: isLoadingArg,
+  ...args
+}: React.ComponentProps<typeof InfiniteScrollWrapper>) => {
+  const [itemCount, setItemCount] = React.useState(initialItemCount);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const timeoutRef = React.useRef<number | null>(null);
+  const hasMore = hasMoreArg === false ? false : itemCount < maxItemCount;
+  const visibleLoading = isLoadingArg || isLoading;
+  const items = Array.from({ length: itemCount }, (_, index) => index + 1);
+
+  React.useEffect(() => {
+    return () => {
+      if (timeoutRef.current !== null) {
+        window.clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleLoadMore = React.useCallback(() => {
+    if (visibleLoading || !hasMore) return;
+
+    onLoadMore?.();
+    setIsLoading(true);
+    timeoutRef.current = window.setTimeout(() => {
+      setItemCount((current) => Math.min(current + pageSize, maxItemCount));
+      setIsLoading(false);
+      timeoutRef.current = null;
+    }, 500);
+  }, [hasMore, onLoadMore, visibleLoading]);
+
+  return (
     <InfiniteScrollWrapper
       {...args}
+      hasMore={hasMore}
+      isLoading={visibleLoading}
+      onLoadMore={handleLoadMore}
       className="h-72 max-w-sm overflow-y-auto rounded-lg border border-[var(--color-border-default)] p-3"
     >
       <div className="space-y-2">
@@ -62,7 +88,23 @@ export const ScrollContainer: Story = {
         ))}
       </div>
     </InfiniteScrollWrapper>
-  ),
+  );
+};
+
+export const ScrollContainer: Story = {
+  args: {
+    children: null,
+    hasMore: true,
+    isLoading: false,
+    useWindow: false,
+    loader: <Spinner label="불러오는 중" />,
+    endMessage: (
+      <span className="text-sm text-[var(--color-text-secondary)]">
+        모든 항목을 불러왔습니다.
+      </span>
+    ),
+  },
+  render: (args) => <InfiniteScrollDemo {...args} />,
 };
 
 export const EndReached: Story = {
