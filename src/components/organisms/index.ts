@@ -19,3 +19,6 @@ export type {
   PostComposerAuthor,
   PostComposerProps,
 } from './PostComposer';
+
+export { PageHeader } from './PageHeader/PageHeader';
+export type { PageHeaderProps } from './PageHeader/PageHeader';

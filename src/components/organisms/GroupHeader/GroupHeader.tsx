@@ -4,10 +4,11 @@ import {
   Lock,
   MoreHorizontal,
   Users,
+  UserCheck,
   type LucideIcon,
 } from 'lucide-react';
 import { Button, type ButtonProps } from '../../atoms/Button';
-import { Divider } from '../../atoms/Divider';
+
 import { IconButton } from '../../atoms/IconButton';
 import { ImageThumb } from '../../atoms/ImageThumb';
 import { Tag } from '../../atoms/Tag';
@@ -16,7 +17,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from '../../molecules/DropdownMenu';
-import { SectionNav, type SectionNavItem } from '../../molecules/SectionNav';
+
 
 export interface GroupHeaderImage {
   src?: string;
@@ -42,14 +43,13 @@ export interface GroupHeaderMenuItem {
 export interface GroupHeaderProps
   extends Omit<React.HTMLAttributes<HTMLElement>, 'children'> {
   name: string;
-  description?: string;
   coverImage?: GroupHeaderImage;
   category?: string;
   isPrivate?: boolean;
+  isJoined?: boolean;
   memberCount?: number;
   actions?: GroupHeaderAction[];
   moreMenuItems?: GroupHeaderMenuItem[];
-  tabs?: SectionNavItem[];
 }
 
 const formatCount = (count: number) => count.toLocaleString();
@@ -58,14 +58,13 @@ const GroupHeader = React.forwardRef<HTMLElement, GroupHeaderProps>(
   (
     {
       name,
-      description,
       coverImage,
       category,
       isPrivate,
+      isJoined,
       memberCount,
       actions = [],
-      moreMenuItems = [],
-      tabs = [],
+      moreMenuItems,
       className,
       ...props
     },
@@ -74,10 +73,23 @@ const GroupHeader = React.forwardRef<HTMLElement, GroupHeaderProps>(
     const PrivacyIcon = isPrivate ? Lock : Globe2;
     const privacyLabel = isPrivate ? '비공개 그룹' : '공개 그룹';
 
+    const defaultActions: GroupHeaderAction[] = [
+      { label: '가입됨', icon: UserCheck, variant: 'secondary' },
+    ];
+
+    const defaultMoreMenuItems: GroupHeaderMenuItem[] = [
+      { label: '알림 관리' },
+      { label: '그룹 팔로우 취소' },
+      { label: '그룹 나가기', variant: 'danger', separatorBefore: true },
+    ];
+
+    const computedActions = actions.length > 0 ? actions : (isJoined ? defaultActions : []);
+    const computedMoreMenuItems = moreMenuItems ?? (isJoined ? defaultMoreMenuItems : []);
+
     return (
       <section
         ref={ref}
-        className={`w-full overflow-hidden rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-raised)] text-[var(--color-text-primary)] shadow-sm ${className ?? ''}`}
+        className={`w-full overflow-hidden rounded-xl bg-[var(--color-surface-raised)] text-[var(--color-text-primary)] ${className ?? ''}`}
         {...props}
       >
         <ImageThumb
@@ -103,12 +115,6 @@ const GroupHeader = React.forwardRef<HTMLElement, GroupHeaderProps>(
                 )}
               </div>
 
-              {description && (
-                <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--color-text-secondary)]">
-                  {description}
-                </p>
-              )}
-
               <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-[var(--color-text-secondary)]">
                 <span className="inline-flex items-center gap-1">
                   <PrivacyIcon className="h-4 w-4" aria-hidden="true" />
@@ -123,9 +129,9 @@ const GroupHeader = React.forwardRef<HTMLElement, GroupHeaderProps>(
               </div>
             </div>
 
-            {(actions.length > 0 || moreMenuItems.length > 0) && (
+            {(computedActions.length > 0 || computedMoreMenuItems.length > 0) && (
               <div className="flex flex-wrap items-center gap-2 md:justify-end">
-                {actions.map((action) => {
+                {computedActions.map((action) => {
                   const Icon = action.icon;
 
                   return (
@@ -143,7 +149,7 @@ const GroupHeader = React.forwardRef<HTMLElement, GroupHeaderProps>(
                   );
                 })}
 
-                {moreMenuItems.length > 0 && (
+                {computedMoreMenuItems.length > 0 && (
                   <DropdownMenu
                     trigger={
                       <IconButton
@@ -154,7 +160,7 @@ const GroupHeader = React.forwardRef<HTMLElement, GroupHeaderProps>(
                       />
                     }
                   >
-                    {moreMenuItems.map((item) => (
+                    {computedMoreMenuItems.map((item) => (
                       <React.Fragment key={item.label}>
                         {item.separatorBefore && <DropdownMenuSeparator />}
                         <DropdownMenuItem
@@ -172,17 +178,7 @@ const GroupHeader = React.forwardRef<HTMLElement, GroupHeaderProps>(
             )}
           </div>
 
-          {tabs.length > 0 && (
-            <>
-              <Divider className="mt-5" />
-              <SectionNav
-                items={tabs}
-                ariaLabel="그룹 메뉴"
-                className="-mb-3 pt-1"
-              />
-            </>
-          )}
-        </div>
+          </div>
       </section>
     );
   }

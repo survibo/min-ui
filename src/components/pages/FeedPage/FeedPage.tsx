@@ -1,22 +1,19 @@
 import * as React from 'react';
 import {
   Compass,
-  Heart,
   Home,
   Menu,
   PlusSquare,
-  Search,
   Send,
 } from 'lucide-react';
-import { Avatar } from '../../atoms/Badge/Avatar';
 import { Button } from '../../atoms/Button';
 import { IconButton } from '../../atoms/IconButton';
 import { Spinner } from '../../atoms/Spinner';
 import { InfiniteScrollWrapper } from '../../cross-cutting/InfiniteScrollWrapper';
 import { SectionNav } from '../../molecules/SectionNav';
-import { SearchBar } from '../../molecules/SearchBar';
 import { StoryThumbnail } from '../../molecules/StoryThumbnail';
 import { UserChip } from '../../molecules/UserChip';
+import { PageHeader } from '../../organisms/PageHeader/PageHeader';
 import { PostCard } from '../../organisms/PostCard';
 
 export type FeedPageProps = Omit<
@@ -142,24 +139,7 @@ const FeedPage = React.forwardRef<
       className={`min-h-screen bg-[var(--color-surface-base)] text-[var(--color-text-primary)] ${className ?? ''}`}
       {...props}
     >
-      <header className="sticky top-0 z-10 border-b border-[var(--color-border-default)] bg-[var(--color-surface-raised)]">
-        <div className="mx-auto flex h-16 items-center justify-between gap-10 px-7">
-          <a href="#" className="text-lg font-semibold whitespace-nowrap">
-            KMLA Online
-          </a>
-          <SearchBar
-            placeholder="Search"
-            className="hidden w-full max-w-[40rem] sm:flex"
-            inputProps={{ 'aria-label': 'Search feed' }}
-          />
-          <div className="flex items-center gap-1">
-            <IconButton icon={Search} aria-label="Open search" size="sm" />
-            <IconButton icon={Heart} aria-label="Open activity" size="sm" />
-            <IconButton icon={Send} aria-label="Open messages" size="sm" />
-            <Avatar fallback="ME" size="sm" />
-          </div>
-        </div>
-      </header>
+      <PageHeader searchPlaceholder="Search feed" />
 
       <main
         className={`mx-auto justify-between gap-8 grid grid-cols-1 px-6 py-6 transition-[grid-template-columns] duration-200 ease-out ${
