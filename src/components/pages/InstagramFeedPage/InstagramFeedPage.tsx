@@ -143,13 +143,13 @@ const InstagramFeedPage = React.forwardRef<
       {...props}
     >
       <header className="sticky top-0 z-10 border-b border-[var(--color-border-default)] bg-[var(--color-surface-raised)]">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
-          <a href="#" className="text-lg font-semibold">
+        <div className="mx-auto flex h-16 items-center justify-between gap-10 px-7">
+          <a href="#" className="text-lg font-semibold whitespace-nowrap">
             Min Social
           </a>
           <SearchBar
             placeholder="Search"
-            className="hidden w-64 sm:flex"
+            className="hidden w-full max-w-[40rem] sm:flex"
             inputProps={{ 'aria-label': 'Search feed' }}
           />
           <div className="flex items-center gap-1">
@@ -162,22 +162,26 @@ const InstagramFeedPage = React.forwardRef<
       </header>
 
       <main
-        className={`mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-6 ${
+        className={`mx-auto justify-between grid grid-cols-1 px-10 py-6 transition-[grid-template-columns] duration-200 ease-out ${
           isNavCollapsed
-            ? 'lg:grid-cols-[4rem_minmax(0,38rem)_18rem]'
-            : 'lg:grid-cols-[13rem_minmax(0,38rem)_18rem]'
+            ? 'lg:grid-cols-[13rem_minmax(0,40rem)_18rem]'
+            : 'lg:grid-cols-[13rem_minmax(0,40rem)_18rem]'
         }`}
       >
-        <aside className="hidden lg:block">
-          <div className="sticky top-24 space-y-2">
+        <aside className="hidden lg:block justify-self-start">
+          <div
+            className={`sticky top-24 space-y-4 transition-all duration-200 ease-out ${
+              isNavCollapsed ? 'w-16' : 'w-52'
+            }`}
+          >
             <IconButton
               icon={Menu}
               aria-label={
                 isNavCollapsed ? 'Expand navigation' : 'Collapse navigation'
               }
               size="sm"
-              variant="secondary"
               onClick={() => setIsNavCollapsed((isCollapsed) => !isCollapsed)}
+              className='relative left-1'
             />
             <SectionNav
               ariaLabel="Primary"
@@ -189,7 +193,7 @@ const InstagramFeedPage = React.forwardRef<
         </aside>
 
         <section className="min-w-0 space-y-5" aria-label="Today Feed">
-          <div className="overflow-x-auto rounded-lg border border-[var(--color-border-default)] bg-[var(--color-surface-raised)] px-4 py-3">
+          <div className="overflow-x-auto rounded-lg border border-[var(--color-border-default)] bg-[var(--color-surface-raised)] px-4 py-3" style={{ scrollbarWidth: 'none' }}>
             <div className="mb-3 text-sm font-semibold">Stories</div>
             <div className="flex min-w-max gap-4">
               {stories.map((story) => (
@@ -238,7 +242,7 @@ const InstagramFeedPage = React.forwardRef<
           </InfiniteScrollWrapper>
         </section>
 
-        <aside className="hidden lg:block">
+        <aside className="hidden lg:block justify-self-end">
           <div className="sticky top-24 space-y-5">
             <div className="flex items-center gap-3">
               <UserChip

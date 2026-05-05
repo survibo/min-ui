@@ -84,7 +84,7 @@ const PostCard = React.forwardRef<HTMLElement, PostCardProps>(
     return (
       <article
         ref={ref}
-        className={`w-full max-w-xl overflow-hidden rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-raised)] text-[var(--color-text-primary)] shadow-sm ${className ?? ''}`}
+        className={`w-full overflow-hidden rounded-xl border border-[var(--color-border-default)] bg-[var(--color-surface-raised)] text-[var(--color-text-primary)] shadow-sm ${className ?? ''}`}
         {...props}
       >
         <header className="flex items-start gap-3 p-4">
