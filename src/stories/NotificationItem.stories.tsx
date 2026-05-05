@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { NotificationItem } from '../components/molecules';
+import { storyImage } from './storyImages';
 
 const meta = {
   title: 'Molecules/NotificationItem',
@@ -76,7 +77,7 @@ export const WithAvatar: Story = {
     time: new Date(),
     isRead: false,
     avatar: {
-      src: 'https://picsum.photos/200',
+      src: storyImage(3),
       fallback: '홍길동',
     },
   },

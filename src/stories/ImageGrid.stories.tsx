@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ImageGrid } from '../components/molecules';
+import { storyImage } from './storyImages';
 
 const images = Array.from({ length: 9 }, (_, index) => ({
-  src: `https://picsum.photos/seed/post-image-${index + 1}/640/480`,
+  src: storyImage(index),
   alt: `게시물 이미지 ${index + 1}`,
 }));
 

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { StoryThumbnail } from '../components/molecules';
+import { storyImage } from './storyImages';
 
 const meta = {
   title: 'Molecules/StoryThumbnail',
@@ -40,7 +41,7 @@ export const WithAvatar: Story = {
   args: {
     name: '홍길동',
     avatar: {
-      src: 'https://picsum.photos/200',
+      src: storyImage(4),
     },
   },
 };

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { UserChip } from '../components/molecules';
+import { storyImage } from './storyImages';
 
 const meta = {
   title: 'Molecules/UserChip',
@@ -40,7 +41,7 @@ export const WithAvatar: Story = {
   args: {
     name: '홍길동',
     avatar: {
-      src: 'https://picsum.photos/200',
+      src: storyImage(5),
     },
   },
 };
@@ -70,7 +71,7 @@ export const Full: Story = {
   args: {
     name: '홍길동',
     avatar: {
-      src: 'https://picsum.photos/200',
+      src: storyImage(5),
     },
     role: '학생',
     href: '/profile/1',

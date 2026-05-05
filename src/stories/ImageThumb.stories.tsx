@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ImageThumb } from '../components/atoms';
+import { storyImage } from './storyImages';
 
 const meta = {
   title: 'Atoms/ImageThumb',
@@ -44,7 +45,7 @@ export const Default: Story = {
 
 export const WithImage: Story = {
   args: {
-    src: 'https://picsum.photos/200',
+    src: storyImage(0),
     alt: 'Sample image',
   },
 };
@@ -122,7 +123,7 @@ export const RoundedFull: Story = {
 
 export const WithImageAndRoundedFull: Story = {
   args: {
-    src: 'https://picsum.photos/200',
+    src: storyImage(1),
     alt: 'Circular image',
     rounded: 'full',
   },
@@ -144,32 +145,32 @@ export const Gallery: Story = {
   render: () => (
     <div className="grid grid-cols-3 gap-2">
       <ImageThumb
-        src="https://picsum.photos/200?1"
+        src={storyImage(0)}
         alt="Image 1"
         rounded="lg"
       />
       <ImageThumb
-        src="https://picsum.photos/200?2"
+        src={storyImage(1)}
         alt="Image 2"
         rounded="lg"
       />
       <ImageThumb
-        src="https://picsum.photos/200?3"
+        src={storyImage(2)}
         alt="Image 3"
         rounded="lg"
       />
       <ImageThumb
-        src="https://picsum.photos/200?4"
+        src={storyImage(3)}
         alt="Image 4"
         rounded="lg"
       />
       <ImageThumb
-        src="https://picsum.photos/200?5"
+        src={storyImage(4)}
         alt="Image 5"
         rounded="lg"
       />
       <ImageThumb
-        src="https://picsum.photos/200?6"
+        src={storyImage(5)}
         alt="Image 6"
         rounded="lg"
       />

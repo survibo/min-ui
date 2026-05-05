@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MessageBubble } from '../components/molecules';
+import { storyImage } from './storyImages';
 
 const meta = {
   title: 'Molecules/MessageBubble',
@@ -56,7 +57,7 @@ export const OwnMessage: Story = {
 export const WithImage: Story = {
   args: {
     name: '홍길동',
-    image: 'https://picsum.photos/200',
+    image: storyImage(2),
     time: new Date(),
   },
 };

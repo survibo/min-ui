@@ -17,8 +17,10 @@ Using UTF-8 when Character encoding error
 Before implementing:
 - State your assumptions explicitly. If uncertain, ask.
 - If multiple interpretations exist, present them - don't pick silently.
-- If a simpler approach exists, say so. Push back when warranted.
+- If a simpler approach exists, say so.
 - If something is unclear, stop. Name what's confusing. Ask.
+- If a request appears incorrect, inefficient, or contradicts an earlier decision,
+  don't silently comply. Name the issue, propose a better path, and let the user decide.
 
 ## 2. Simplicity First
 

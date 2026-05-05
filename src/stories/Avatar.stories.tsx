@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Avatar } from '../components/atoms';
+import { storyImage } from './storyImages';
 
 const meta = {
   title: 'Atoms/Avatar',
@@ -40,7 +41,7 @@ export const Default: Story = {
 
 export const WithImage: Story = {
   args: {
-    src: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop',
+    src: storyImage(0),
     fallback: 'John Doe',
     size: 'md',
   },
