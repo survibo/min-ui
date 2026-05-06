@@ -32,8 +32,8 @@ const getItemClassName = (
     'inline-flex shrink-0 items-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus-ring)]';
 
   if (orientation === 'vertical') {
-    return `${base} h-9 rounded-md border-l-2 px-3 ${
-      collapsed ? 'w-10 justify-center' : 'w-full'
+    return `${base} h-9 overflow-hidden rounded-md border-l-2 px-3 ${
+      collapsed ? 'w-10 justify-start' : 'w-full'
     } ${
       isActive
         ? 'border-[var(--color-action-default)] bg-[var(--color-surface-subtle)] text-[var(--color-text-primary)]'
@@ -41,7 +41,7 @@ const getItemClassName = (
     }`;
   }
 
-  return `${base} h-10 border-b-2 px-3 ${
+  return `${base} ${collapsed ? 'h-9 flex-1 justify-center px-2' : 'h-10 px-3'} border-b-2 ${
     isActive
       ? 'border-[var(--color-action-default)] text-[var(--color-text-primary)]'
       : 'border-transparent text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
@@ -69,6 +69,7 @@ const SectionNav = React.forwardRef<HTMLElement, SectionNavProps>(
       >
         {items.map((item) => {
           const Icon = item.icon;
+          const isAnimatedVerticalLabel = orientation === 'vertical';
           const content = (
             <>
               {Icon && (
@@ -77,7 +78,19 @@ const SectionNav = React.forwardRef<HTMLElement, SectionNavProps>(
                   aria-hidden="true"
                 />
               )}
-              {!collapsed && <span>{item.label}</span>}
+              {isAnimatedVerticalLabel ? (
+                <span
+                  className={`overflow-hidden whitespace-nowrap transition-[max-width,opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    collapsed
+                      ? 'max-w-0 opacity-0 -translate-x-1'
+                      : 'max-w-32 opacity-100 translate-x-0'
+                  }`}
+                >
+                  {item.label}
+                </span>
+              ) : (
+                !collapsed && <span>{item.label}</span>
+              )}
             </>
           );
 

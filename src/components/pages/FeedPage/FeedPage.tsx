@@ -1,19 +1,11 @@
 import * as React from 'react';
-import {
-  Compass,
-  Home,
-  Menu,
-  PlusSquare,
-  Send,
-} from 'lucide-react';
 import { Button } from '../../atoms/Button';
-import { IconButton } from '../../atoms/IconButton';
 import { Spinner } from '../../atoms/Spinner';
 import { InfiniteScrollWrapper } from '../../cross-cutting/InfiniteScrollWrapper';
-import { SectionNav } from '../../molecules/SectionNav';
 import { StoryThumbnail } from '../../molecules/StoryThumbnail';
 import { UserChip } from '../../molecules/UserChip';
 import { PageHeader } from '../../organisms/PageHeader/PageHeader';
+import { PrimaryNavigation } from '../../organisms/PrimaryNavigation/PrimaryNavigation';
 import { PostCard } from '../../organisms/PostCard';
 
 export type FeedPageProps = Omit<
@@ -53,7 +45,7 @@ const posts = [
   {
     author: 'studio.nari',
     location: 'Seongsu, Seoul',
-    time: '12m',
+    time: new Date('2026-05-05T09:12:00.000Z'),
     image: mockImage('#2563eb', '#38bdf8', '#fbbf24'),
     caption: 'Quiet morning light, new notebook, and a feed mockup draft.',
     likes: 2184,
@@ -62,7 +54,7 @@ const posts = [
   {
     author: 'daily.grid',
     location: 'Design archive',
-    time: '47m',
+    time: new Date('2026-05-05T08:47:00.000Z'),
     image: mockImage('#111827', '#475569', '#f472b6'),
     caption: 'Layout study: clean rails, image-first cards, compact actions.',
     likes: 984,
@@ -71,7 +63,7 @@ const posts = [
   {
     author: 'city.walk',
     location: 'Hannam, Seoul',
-    time: '1h',
+    time: new Date('2026-05-05T08:00:00.000Z'),
     image: mockImage('#15803d', '#5eead4', '#ffffff'),
     caption: 'A small street corner with clean lines and late afternoon color.',
     likes: 1426,
@@ -80,7 +72,7 @@ const posts = [
   {
     author: 'light.table',
     location: 'Cafe archive',
-    time: '2h',
+    time: new Date('2026-05-05T07:00:00.000Z'),
     image: mockImage('#d97706', '#fef3c7', '#2563eb'),
     caption: 'Table scene, layered shadows, and a compact composition.',
     likes: 642,
@@ -89,7 +81,7 @@ const posts = [
   {
     author: 'frame.note',
     location: 'Moodboard',
-    time: '3h',
+    time: new Date('2026-05-05T06:00:00.000Z'),
     image: mockImage('#be185d', '#f472b6', '#fbbf24'),
     caption: 'Saved references for image-first social layouts.',
     likes: 2031,
@@ -103,18 +95,10 @@ const suggestions = [
   { name: 'weekend.log', note: 'Popular this week' },
 ] as const;
 
-const navItems = [
-  { label: 'Home', href: '#', icon: Home, isActive: true },
-  { label: 'Explore', href: '#', icon: Compass },
-  { label: 'Messages', href: '#', icon: Send },
-  { label: 'Create', href: '#', icon: PlusSquare },
-];
-
 const FeedPage = React.forwardRef<
   HTMLDivElement,
   FeedPageProps
 >(({ className, ...props }, ref) => {
-  const [isNavCollapsed, setIsNavCollapsed] = React.useState(true);
   const [visiblePostCount, setVisiblePostCount] = React.useState(2);
   const [isLoadingMore, setIsLoadingMore] = React.useState(false);
 
@@ -142,35 +126,12 @@ const FeedPage = React.forwardRef<
       <PageHeader searchPlaceholder="Search feed" />
 
       <main
-        className={`mx-auto justify-between gap-8 grid grid-cols-1 px-6 py-6 transition-[grid-template-columns] duration-200 ease-out ${
-          isNavCollapsed
-            ? 'lg:grid-cols-[13rem_minmax(0,40rem)_16rem]'
-            : 'lg:grid-cols-[13rem_minmax(0,40rem)_16rem]'
-        }`}
+        className="mx-auto grid grid-cols-1 justify-between gap-8 px-6 py-6 pb-28 lg:grid-cols-[13rem_minmax(0,40rem)_16rem] lg:pb-6"
       >
-        <aside className="hidden lg:block justify-self-start">
-          <div
-            className={`sticky top-24 space-y-4 transition-all duration-200 ease-out ${
-              isNavCollapsed ? 'w-16' : 'w-52'
-            }`}
-          >
-            <IconButton
-              icon={Menu}
-              aria-label={
-                isNavCollapsed ? 'Expand navigation' : 'Collapse navigation'
-              }
-              size="sm"
-              onClick={() => setIsNavCollapsed((isCollapsed) => !isCollapsed)}
-              className='relative left-1'
-            />
-            <SectionNav
-              ariaLabel="Primary"
-              collapsed={isNavCollapsed}
-              items={navItems}
-              orientation="vertical"
-            />
-          </div>
-        </aside>
+        <PrimaryNavigation
+          activeKey="home"
+          className="justify-self-start"
+        />
 
         <section className="min-w-0 space-y-5" aria-label="Today Feed">
           <div className="overflow-x-auto rounded-lg border border-[var(--color-border-default)] bg-[var(--color-surface-raised)] px-4 py-3" style={{ scrollbarWidth: 'none' }}>

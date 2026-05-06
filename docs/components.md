@@ -86,3 +86,5 @@ remain visible in Docs but should not be edited in Controls.
 Use `parameters.controls.exclude` for props that should not appear in Controls, such as `className`, `style`, `children`, render-only slots, and callbacks already represented through Storybook actions. Keep all `exclude` entries in `.storybook/preview.ts`, not individual stories.
 
 Keep story-level `argTypes` for component-specific controls such as variants, sizes, text fields, booleans, and `control: false` entries that are clearer or safer to manage per story.
+
+When changing `argTypes` for a prop, check whether existing stories and their `args` examples need to be updated to match. A changed control type, renamed option, or removed prop can silently break story rendering or `play` function assertions without a compile error.

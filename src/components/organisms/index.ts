@@ -22,3 +22,9 @@ export type {
 
 export { PageHeader } from './PageHeader/PageHeader';
 export type { PageHeaderProps } from './PageHeader/PageHeader';
+
+export { PrimaryNavigation } from './PrimaryNavigation/PrimaryNavigation';
+export type {
+  PrimaryNavigationKey,
+  PrimaryNavigationProps,
+} from './PrimaryNavigation/PrimaryNavigation';

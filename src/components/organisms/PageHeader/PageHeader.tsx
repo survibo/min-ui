@@ -17,7 +17,7 @@ const PageHeader = React.forwardRef<HTMLElement, PageHeaderProps>(
         className={`sticky top-0 z-10 border-b border-[var(--color-border-default)] bg-[var(--color-surface-raised)] ${className ?? ''}`}
         {...props}
       >
-        <div className="mx-auto flex h-16 items-center justify-between gap-10 px-7">
+        <div className="mx-auto flex h-14 items-center justify-between gap-4 px-5 lg:h-16 lg:gap-10 lg:px-7">
           <a href="#" className="text-lg font-semibold whitespace-nowrap">
             KMLA Online
           </a>

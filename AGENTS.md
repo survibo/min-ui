@@ -14,6 +14,8 @@ Check docs\components.md and follow the rule
 
 Ask your questions in text form.
 
+Using TDD when only user wants explicitly
+
 ## 1. Think Before Coding
 
 **Don't assume. Don't hide confusion. Surface tradeoffs.**

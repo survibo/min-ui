@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import * as React from 'react';
+import { expect } from 'storybook/test';
 import { PostCard } from '../components/organisms';
 import type { PostCardProps } from '../components/organisms';
 import { storyImage } from './storyImages';
@@ -28,7 +29,7 @@ const meta = {
       control: 'text',
     },
     timestamp: {
-      control: 'text',
+      control: 'date',
     },
     groupName: {
       control: 'text',
@@ -45,6 +46,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const baseTimestamp = new Date('2026-05-05T09:12:00.000Z');
+
 const baseArgs = {
   author: {
     name: '김민준',
@@ -53,7 +56,7 @@ const baseArgs = {
   },
   groupName: '컴퓨터공학 스터디',
   groupHref: '/groups/cs-study',
-  timestamp: '12분 전',
+  timestamp: baseTimestamp,
   content:
     '오늘 알고리즘 스터디 자료를 정리했습니다.\n댓글로 막히는 문제 번호를 남겨주면 저녁에 같이 보겠습니다.',
   moreMenuItems: [
@@ -101,6 +104,15 @@ const InteractivePostCard = () => {
 
 export const Default: Story = {
   args: baseArgs,
+  play: async ({ canvasElement }) => {
+    const time = canvasElement.querySelector('time');
+
+    if (!time) {
+      throw new Error('PostCard timestamp should render as a time element.');
+    }
+
+    await expect(time).toHaveAttribute('datetime', baseTimestamp.toISOString());
+  },
 };
 
 export const WithImages: Story = {

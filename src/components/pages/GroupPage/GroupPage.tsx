@@ -5,6 +5,7 @@ import { InfiniteScrollWrapper } from '../../cross-cutting/InfiniteScrollWrapper
 import { GroupHeader } from '../../organisms/GroupHeader';
 import { PageHeader } from '../../organisms/PageHeader/PageHeader';
 import { PostCard } from '../../organisms/PostCard';
+import { PrimaryNavigation } from '../../organisms/PrimaryNavigation/PrimaryNavigation';
 import { SectionNav } from '../../molecules/SectionNav';
 import type { SectionNavItem } from '../../molecules/SectionNav';
 import { Divider } from '../../atoms/Divider';
@@ -52,8 +53,7 @@ const mockImage = (from: string, to: string, accent: string) => {
 const posts = [
   {
     author: 'studio.nari',
-    location: 'Seongsu, Seoul',
-    time: '12m',
+    time: new Date('2026-05-05T09:12:00.000Z'),
     image: mockImage('#2563eb', '#38bdf8', '#fbbf24'),
     caption: 'Quiet morning light, new notebook, and a feed mockup draft.',
     likes: 2184,
@@ -61,8 +61,7 @@ const posts = [
   },
   {
     author: 'daily.grid',
-    location: 'Design archive',
-    time: '47m',
+    time: new Date('2026-05-05T08:47:00.000Z'),
     image: mockImage('#111827', '#475569', '#f472b6'),
     caption: 'Layout study: clean rails, image-first cards, compact actions.',
     likes: 984,
@@ -70,8 +69,7 @@ const posts = [
   },
   {
     author: 'city.walk',
-    location: 'Hannam, Seoul',
-    time: '1h',
+    time: new Date('2026-05-05T08:00:00.000Z'),
     image: mockImage('#15803d', '#5eead4', '#ffffff'),
     caption: 'A small street corner with clean lines and late afternoon color.',
     likes: 1426,
@@ -79,8 +77,7 @@ const posts = [
   },
   {
     author: 'light.table',
-    location: 'Cafe archive',
-    time: '2h',
+    time: new Date('2026-05-05T07:00:00.000Z'),
     image: mockImage('#d97706', '#fef3c7', '#2563eb'),
     caption: 'Table scene, layered shadows, and a compact composition.',
     likes: 642,
@@ -88,8 +85,7 @@ const posts = [
   },
   {
     author: 'frame.note',
-    location: 'Moodboard',
-    time: '3h',
+    time: new Date('2026-05-05T06:00:00.000Z'),
     image: mockImage('#be185d', '#f472b6', '#fbbf24'),
     caption: 'Saved references for image-first social layouts.',
     likes: 2031,
@@ -105,6 +101,7 @@ const groupTabs: SectionNavItem[] = [
 
 const GroupPage = React.forwardRef<HTMLDivElement, GroupPageProps>(
   ({ className, ...props }, ref) => {
+    const [isNavCollapsed, setIsNavCollapsed] = React.useState(true);
     const [visiblePostCount, setVisiblePostCount] = React.useState(2);
     const [isLoadingMore, setIsLoadingMore] = React.useState(false);
 
@@ -134,7 +131,21 @@ const GroupPage = React.forwardRef<HTMLDivElement, GroupPageProps>(
       >
         <PageHeader searchPlaceholder="Search post" />
 
-        <main className="mx-auto max-w-5xl px-6 flex flex-col space-y-1">
+        <main
+          className={`mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 px-6 py-6 pb-28 transition-[grid-template-columns] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:pb-6 ${
+            isNavCollapsed
+              ? 'lg:grid-cols-[2rem_minmax(0,1fr)]'
+              : 'lg:grid-cols-[13rem_minmax(0,1fr)]'
+          }`}
+        >
+          <PrimaryNavigation
+            activeKey="home"
+            collapsed={isNavCollapsed}
+            onCollapsedChange={setIsNavCollapsed}
+            className="justify-self-start"
+          />
+
+          <div className="min-w-0 space-y-1">
           <GroupHeader
             name="과학기술부"
             category="과기부"
@@ -177,7 +188,6 @@ const GroupPage = React.forwardRef<HTMLDivElement, GroupPageProps>(
                     }}
                     className="max-w-none"
                     content={post.caption}
-                    groupName={post.location}
                     images={[
                       { src: post.image, alt: `${post.author} post image` },
                     ]}
@@ -210,6 +220,7 @@ const GroupPage = React.forwardRef<HTMLDivElement, GroupPageProps>(
             </div>
           )}
 
+          </div>
 
         </main>
       </div>

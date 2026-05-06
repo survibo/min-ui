@@ -10,6 +10,7 @@ import { Button } from '../../atoms/Button';
 import { Divider } from '../../atoms/Divider';
 import { IconButton } from '../../atoms/IconButton';
 import { Link } from '../../atoms/Link';
+import { TimeBadge } from '../../atoms/TimeBadge';
 import {
   DropdownMenu,
   DropdownMenuItem,
@@ -42,7 +43,7 @@ export interface PostCardProps
   extends Omit<React.HTMLAttributes<HTMLElement>, 'children'> {
   author: PostCardAuthor;
   content: string;
-  timestamp: string;
+  timestamp: Date | string | number;
   groupName?: string;
   groupHref?: string;
   images?: ImageGridItem[];
@@ -143,8 +144,8 @@ const PostCard = React.forwardRef<HTMLElement, PostCardProps>(
                 </>
               )}
             </div>
-            <div className="mt-0.5 flex items-center gap-1 text-xs text-[var(--color-text-tertiary)]">
-              <span>{timestamp}</span>
+            <div className="mt-0.5 flex items-center gap-1 text-[var(--color-text-tertiary)]">
+              <TimeBadge date={timestamp} format="relative" size="sm" />
             </div>
           </div>
           <DropdownMenu

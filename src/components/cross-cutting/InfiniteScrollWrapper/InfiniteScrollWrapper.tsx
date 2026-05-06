@@ -59,8 +59,11 @@ export const InfiniteScrollWrapper: React.FC<InfiniteScrollWrapperProps> = ({
     };
   }, [handleObserver, useWindow]);
 
+  const rootClassName =
+    `[scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden ${className}`.trim();
+
   return (
-    <div ref={rootRef} className={className}>
+    <div ref={rootRef} className={rootClassName}>
       {children}
 
       <div ref={loadMoreRef} className="h-px w-full" />
