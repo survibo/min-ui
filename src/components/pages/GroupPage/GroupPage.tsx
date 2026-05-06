@@ -139,7 +139,7 @@ const GroupPage = React.forwardRef<HTMLDivElement, GroupPageProps>(
           }`}
         >
           <PrimaryNavigation
-            activeKey="home"
+            activeKey="group"
             collapsed={isNavCollapsed}
             onCollapsedChange={setIsNavCollapsed}
             className="justify-self-start"

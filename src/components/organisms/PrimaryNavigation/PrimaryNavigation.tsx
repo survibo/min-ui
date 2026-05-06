@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Compass, Home, Menu, PlusSquare, Send } from 'lucide-react';
+import { Home, Menu, Send, Settings, Users } from 'lucide-react';
 import { IconButton } from '../../atoms/IconButton';
 import { SectionNav } from '../../molecules/SectionNav';
 
-type PrimaryNavigationKey = 'home' | 'explore' | 'messages' | 'create';
+type PrimaryNavigationKey = 'home' | 'group' | 'message' | 'setting';
 
 export interface PrimaryNavigationProps {
   activeKey: PrimaryNavigationKey;
@@ -15,9 +15,9 @@ export interface PrimaryNavigationProps {
 
 const navigationItems = [
   { key: 'home', label: 'Home', href: '#', icon: Home },
-  { key: 'explore', label: 'Explore', href: '#', icon: Compass },
-  { key: 'messages', label: 'Messages', href: '#', icon: Send },
-  { key: 'create', label: 'Create', href: '#', icon: PlusSquare },
+  { key: 'group', label: 'Group', href: '#', icon: Users },
+  { key: 'message', label: 'Message', href: '#', icon: Send },
+  { key: 'setting', label: 'Setting', href: '#', icon: Settings },
 ] as const;
 
 const PrimaryNavigation = ({

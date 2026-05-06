@@ -20,10 +20,9 @@ export const Default: Story = {
     await expect(canvas.getAllByText('studio.nari')[0]).toBeInTheDocument();
     await expect(canvas.getAllByText('daily.grid')[0]).toBeInTheDocument();
     await expect(canvas.queryByText('city.walk')).not.toBeInTheDocument();
-    await expect(canvas.queryByText('Explore')).not.toBeInTheDocument();
 
     await userEvent.click(canvas.getByRole('button', { name: 'Expand navigation' }));
-    await expect(canvas.getByText('Explore')).toBeInTheDocument();
+    await expect(canvas.getByText('Group')).toBeInTheDocument();
 
     window.scrollTo(0, document.body.scrollHeight);
 

@@ -11,7 +11,7 @@ const meta = {
   argTypes: {
     activeKey: {
       control: 'select',
-      options: ['home', 'explore', 'messages', 'create'],
+      options: ['home', 'group', 'message', 'setting'],
     },
     collapsed: {
       control: 'boolean',
