@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Search, Heart, Send } from 'lucide-react';
+import { Bell } from 'lucide-react';
 import { SearchBar } from '../../molecules/SearchBar';
 import { IconButton } from '../../atoms/IconButton';
 import { Avatar } from '../../atoms/Badge/Avatar';
@@ -27,9 +27,7 @@ const PageHeader = React.forwardRef<HTMLElement, PageHeaderProps>(
             inputProps={{ 'aria-label': 'Search feed' }}
           />
           <div className="flex items-center gap-1">
-            <IconButton icon={Search} aria-label="Open search" size="sm" />
-            <IconButton icon={Heart} aria-label="Open activity" size="sm" />
-            <IconButton icon={Send} aria-label="Open messages" size="sm" />
+            <IconButton icon={Bell} aria-label="Open notifications" size="sm" />
             <Avatar fallback="ME" size="sm" />
           </div>
         </div>

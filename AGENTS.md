@@ -1,7 +1,3 @@
-# Specification
-
-Files that contain the specification of this project are in `docs/` directory.
-
 # UI Design
 
 While creating UI components, always remember to use design tokens in `src/styles/globals.css`.

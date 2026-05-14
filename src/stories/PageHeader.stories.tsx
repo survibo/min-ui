@@ -29,7 +29,7 @@ export const Default: Story = {
     await expect(canvas.getByText('KMLA Online')).toBeInTheDocument();
     await expect(canvas.getByLabelText('Search feed')).toBeInTheDocument();
     await expect(
-      canvas.getByRole('button', { name: 'Open search' })
+      canvas.getByRole('button', { name: 'Open notifications' })
     ).toBeInTheDocument();
   },
 };
@@ -39,4 +39,3 @@ export const CustomPlaceholder: Story = {
     searchPlaceholder: 'Search post',
   },
 };
-
