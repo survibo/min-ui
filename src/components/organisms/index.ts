@@ -28,3 +28,9 @@ export type {
   PrimaryNavigationKey,
   PrimaryNavigationProps,
 } from './PrimaryNavigation/PrimaryNavigation';
+
+export { MessageThread } from './MessageThread';
+export type {
+  MessageThreadMessage,
+  MessageThreadProps,
+} from './MessageThread';

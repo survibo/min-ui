@@ -9,33 +9,19 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
   },
-  argTypes: {
-    searchPlaceholder: {
-      control: 'text',
-    },
-  },
 } satisfies Meta<typeof PageHeader>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    searchPlaceholder: 'Search feed',
-  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
     await expect(canvas.getByText('KMLA Online')).toBeInTheDocument();
-    await expect(canvas.getByLabelText('Search feed')).toBeInTheDocument();
+    await expect(canvas.getByLabelText('검색')).toBeInTheDocument();
     await expect(
-      canvas.getByRole('button', { name: 'Open notifications' })
+      canvas.getByRole('button', { name: '알림 열기' })
     ).toBeInTheDocument();
-  },
-};
-
-export const CustomPlaceholder: Story = {
-  args: {
-    searchPlaceholder: 'Search post',
   },
 };

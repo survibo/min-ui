@@ -4,10 +4,10 @@ While creating UI components, always remember to use design tokens in `src/style
 
 You can use Tailwind (v4), Radix UI, and Cross Variance Authority (CVA).
 
-Using UTF-8 when Character encoding error
+**Using Encoding UTF-8**
 
 Check docs\components.md and follow the rule
-
+d
 Ask your questions in text form.
 
 Using TDD when only user wants explicitly

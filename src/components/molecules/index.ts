@@ -20,7 +20,12 @@ export { ImageGrid } from './ImageGrid';
 export type { ImageGridItem, ImageGridProps } from './ImageGrid';
 
 export { MessageBubble } from './MessageBubble';
-export type { MessageBubbleProps } from './MessageBubble';
+export type {
+  MessageBubbleFile,
+  MessageBubbleGroupPosition,
+  MessageBubbleProps,
+  MessageBubbleReplyTo,
+} from './MessageBubble';
 
 export { ChatRoomItem } from './ChatRoomItem';
 export type { ChatRoomItemProps } from './ChatRoomItem';

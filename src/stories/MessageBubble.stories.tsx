@@ -31,6 +31,10 @@ const meta = {
     isOwn: {
       control: 'boolean',
     },
+    groupPosition: {
+      control: 'inline-radio',
+      options: ['single', 'start', 'middle', 'end'],
+    },
     showAvatar: {
       control: 'boolean',
     },
@@ -42,6 +46,19 @@ const meta = {
     },
     time: {
       control: 'date',
+    },
+    timeFormat: {
+      control: 'inline-radio',
+      options: ['relative', 'absolute'],
+    },
+    metaLabel: {
+      control: 'text',
+    },
+    isEdited: {
+      control: 'boolean',
+    },
+    isDeleted: {
+      control: 'boolean',
     },
   },
 } satisfies Meta<typeof MessageBubble>;
@@ -63,6 +80,7 @@ export const OwnMessage: Story = {
     content: '네, 안녕하세요!',
     time: new Date(),
     isOwn: true,
+    metaLabel: '읽음',
   },
 };
 
@@ -96,6 +114,37 @@ export const WithReply: Story = {
     },
     time: new Date(),
     isOwn: true,
+    metaLabel: '전송됨',
+  },
+};
+
+export const WithReadState: Story = {
+  args: {
+    name: '나',
+    content: '도착하면 알려줘.',
+    time: new Date(),
+    timeFormat: 'absolute',
+    metaLabel: '?쎌쓬',
+    isOwn: true,
+  },
+};
+
+export const EditedMessage: Story = {
+  args: {
+    name: '나',
+    content: '시간 바꿔서 7시 30분에 갈게.',
+    time: new Date(),
+    isEdited: true,
+    isOwn: true,
+    metaLabel: '읽음',
+  },
+};
+
+export const DeletedMessage: Story = {
+  args: {
+    name: '홍길동',
+    time: new Date(),
+    isDeleted: true,
   },
 };
 
@@ -107,6 +156,7 @@ export const GroupedMessages: Story = {
         name="홍길동"
         content="오늘 스터디 몇 시에 시작해요?"
         time={new Date()}
+        groupPosition="start"
         showTime={false}
       />
       <MessageBubble
@@ -114,6 +164,7 @@ export const GroupedMessages: Story = {
         name="홍길동"
         content="자료는 제가 먼저 올려둘게요."
         time={new Date()}
+        groupPosition="end"
         showAvatar={false}
         showName={false}
       />
@@ -122,6 +173,16 @@ export const GroupedMessages: Story = {
         content="7시에 시작하면 될 것 같아요."
         time={new Date()}
         isOwn
+        groupPosition="start"
+        showTime={false}
+      />
+      <MessageBubble
+        name="나"
+        content="끝나고 질문도 조금 받을게요."
+        time={new Date()}
+        isOwn
+        groupPosition="end"
+        metaLabel="읽음"
       />
     </div>
   ),

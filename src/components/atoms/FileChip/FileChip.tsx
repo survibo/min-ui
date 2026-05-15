@@ -38,8 +38,8 @@ export interface FileChipProps
 const formatFileSize = (bytes?: number): string => {
   if (!bytes) return '';
   if (bytes < 1024) return `${bytes} B`;
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
+  return `${Math.round(bytes / (1024 * 1024))} MB`;
 };
 
 const FileChip = React.forwardRef<HTMLDivElement, FileChipProps>(
@@ -67,11 +67,11 @@ const FileChip = React.forwardRef<HTMLDivElement, FileChipProps>(
         ) : (
           <Paperclip className="h-4 w-4 shrink-0 text-[var(--color-text-secondary)]" />
         )}
-        <span className="truncate text-[var(--color-text-primary)]">
+        <span className="min-w-0 flex-1 truncate text-[var(--color-text-primary)]">
           {fileName}
         </span>
         {fileSize !== undefined && (
-          <span className="text-[var(--color-text-tertiary)]">
+          <span className="shrink-0 whitespace-nowrap text-[var(--color-text-tertiary)]">
             {formatFileSize(fileSize)}
           </span>
         )}

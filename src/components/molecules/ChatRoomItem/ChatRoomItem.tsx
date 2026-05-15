@@ -38,7 +38,13 @@ const ChatRoomItem = React.forwardRef<HTMLButtonElement, ChatRoomItemProps>(
             <span className="truncate text-sm font-medium text-[var(--color-text-primary)]">
               {name}
             </span>
-            {time && <TimeBadge date={time} size="xs" />}
+            {time && (
+              <TimeBadge
+                date={time}
+                size="xs"
+                className="relative left-1 bottom-1.5"
+              />
+            )}
           </div>
           <div className="flex items-center justify-between gap-2">
             <p className="truncate text-sm text-[var(--color-text-secondary)]">

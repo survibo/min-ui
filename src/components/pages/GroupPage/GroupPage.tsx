@@ -129,7 +129,7 @@ const GroupPage = React.forwardRef<HTMLDivElement, GroupPageProps>(
         className={`min-h-screen bg-[var(--color-surface-base)] text-[var(--color-text-primary)] ${className ?? ''}`}
         {...props}
       >
-        <PageHeader searchPlaceholder="Search post" />
+        <PageHeader />
 
         <main
           className={`mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 px-6 py-6 pb-28 transition-[grid-template-columns] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:pb-6 ${

@@ -5,12 +5,10 @@ import { IconButton } from '../../atoms/IconButton';
 import { Avatar } from '../../atoms/Badge/Avatar';
 
 export interface PageHeaderProps
-  extends Omit<React.HTMLAttributes<HTMLElement>, 'children'> {
-  searchPlaceholder?: string;
-}
+  extends Omit<React.HTMLAttributes<HTMLElement>, 'children'> {}
 
 const PageHeader = React.forwardRef<HTMLElement, PageHeaderProps>(
-  ({ className, searchPlaceholder, ...props }, ref) => {
+  ({ className, ...props }, ref) => {
     return (
       <header
         ref={ref}
@@ -22,13 +20,13 @@ const PageHeader = React.forwardRef<HTMLElement, PageHeaderProps>(
             KMLA Online
           </a>
           <SearchBar
-            placeholder={searchPlaceholder ?? 'Search'}
+            placeholder="검색"
             className="hidden w-full max-w-[40rem] sm:flex"
-            inputProps={{ 'aria-label': 'Search feed' }}
+            inputProps={{ 'aria-label': '검색' }}
           />
           <div className="flex items-center gap-1">
-            <IconButton icon={Bell} aria-label="Open notifications" size="sm" />
-            <Avatar fallback="ME" size="sm" />
+            <IconButton icon={Bell} aria-label="알림 열기" size="sm" />
+            <Avatar fallback="나" size="sm" />
           </div>
         </div>
       </header>

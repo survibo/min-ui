@@ -123,7 +123,7 @@ const FeedPage = React.forwardRef<
       className={`min-h-screen bg-[var(--color-surface-base)] text-[var(--color-text-primary)] ${className ?? ''}`}
       {...props}
     >
-      <PageHeader searchPlaceholder="Search feed" />
+      <PageHeader />
 
       <main
         className="mx-auto grid grid-cols-1 justify-between gap-8 px-6 py-6 pb-28 lg:grid-cols-[13rem_minmax(0,40rem)_16rem] lg:pb-6"

@@ -83,7 +83,7 @@
 
   /* — Surface (배경 레이어) */
   --color-surface-base: #ffffff; /* 페이지 기본 배경 */
-  --color-surface-subtle: #f9fafb; /* 카드, 사이드바 등 */
+  --color-surface-subtle: #f1f2f5; /* 카드, 사이드바 등 */
   --color-surface-raised: #ffffff; /* 드롭다운, 팝오버 */
   --color-surface-overlay: #ffffff; /* 모달 */
 
@@ -185,4 +185,16 @@
   --color-focus-ring: var(--color-primary-400);
   --shadow-focus: 0 0 0 3px
     color-mix(in srgb, var(--color-primary-400) 35%, transparent);
+}
+
+@keyframes message-page-panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

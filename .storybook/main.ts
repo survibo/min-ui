@@ -5,6 +5,9 @@ const config: StorybookConfig = {
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
+  "typescript": {
+    "reactDocgen": "react-docgen-typescript"
+  },
   "addons": [
     "@chromatic-com/storybook",
     "@storybook/addon-vitest",
