@@ -51,6 +51,25 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const isVisibleElement = (element: HTMLElement) =>
+  element.getClientRects().length > 0 &&
+  window.getComputedStyle(element).visibility !== 'hidden';
+
+const queryVisibleConversationList = (container: HTMLElement) =>
+  within(container)
+    .queryAllByLabelText('Conversation list')
+    .find(isVisibleElement) ?? null;
+
+const getVisibleConversationList = (container: HTMLElement) => {
+  const conversationList = queryVisibleConversationList(container);
+
+  if (!conversationList) {
+    throw new Error('Visible conversation list not found');
+  }
+
+  return conversationList;
+};
+
 export const Default: Story = {
   render: () => (
     <ViewportFrame width={1440}>
@@ -62,7 +81,7 @@ export const Default: Story = {
 
     await expect(canvas.getByText('KMLA Online')).toBeInTheDocument();
     await expect(
-      canvas.getByLabelText('Conversation list')
+      getVisibleConversationList(canvasElement)
     ).toBeInTheDocument();
 
     await userEvent.click(
@@ -71,7 +90,7 @@ export const Default: Story = {
 
     await waitFor(() => {
       expect(
-        canvas.queryByLabelText('Conversation list')
+        queryVisibleConversationList(canvasElement)
       ).not.toBeInTheDocument();
     });
 
@@ -80,7 +99,7 @@ export const Default: Story = {
     );
 
     await waitFor(() => {
-      expect(canvas.getByLabelText('Conversation list')).toBeInTheDocument();
+      expect(getVisibleConversationList(canvasElement)).toBeInTheDocument();
     });
   },
 };
@@ -101,7 +120,7 @@ export const MobileRoom: Story = {
   ),
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const conversationList = canvas.getByLabelText('Conversation list');
+    const conversationList = getVisibleConversationList(canvasElement);
     const roomButtons = within(conversationList).getAllByRole('button');
 
     await expect(conversationList).toBeInTheDocument();
@@ -111,7 +130,7 @@ export const MobileRoom: Story = {
 
     await waitFor(() => {
       expect(
-        canvas.queryByLabelText('Conversation list')
+        queryVisibleConversationList(canvasElement)
       ).not.toBeInTheDocument();
       expect(canvas.getByRole('textbox')).toBeInTheDocument();
     });
@@ -119,12 +138,12 @@ export const MobileRoom: Story = {
     window.history.back();
 
     await waitFor(() => {
-      expect(canvas.getByLabelText('Conversation list')).toBeInTheDocument();
+      expect(getVisibleConversationList(canvasElement)).toBeInTheDocument();
       expect(canvas.queryByRole('textbox')).not.toBeInTheDocument();
     });
 
     await userEvent.click(
-      within(canvas.getByLabelText('Conversation list')).getAllByRole(
+      within(getVisibleConversationList(canvasElement)).getAllByRole(
         'button'
       )[1]
     );
@@ -138,7 +157,7 @@ export const MobileRoom: Story = {
     await waitFor(() => {
       expect(canvas.queryByRole('textbox')).not.toBeInTheDocument();
       expect(
-        canvas.queryByLabelText('Conversation list')
+        queryVisibleConversationList(canvasElement)
       ).not.toBeInTheDocument();
     });
 
@@ -151,7 +170,7 @@ export const MobileRoom: Story = {
     await userEvent.click(canvas.getAllByRole('button')[0]);
 
     await waitFor(() => {
-      expect(canvas.getByLabelText('Conversation list')).toBeInTheDocument();
+      expect(getVisibleConversationList(canvasElement)).toBeInTheDocument();
     });
   },
 };
